@@ -1,0 +1,12 @@
+@(name: String, link: String, siteUrl: String)(implicit messages: Messages)
+
+
+@{Messages("web.mail.greetings", name)}
+
+@{Messages("web.mail.validation.prelink", siteUrl)}
+
+@Messages("web.mail.siteUrl")@link
+
+@Messages("web.mail.ignore.postlink")
+
+@Messages("web.mail.sign")

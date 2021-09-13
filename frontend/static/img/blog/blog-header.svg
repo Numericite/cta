@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="849px" height="396px" viewBox="0 0 849 396" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>14383BB8-9708-4B6B-80E1-8418A6739A83</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="LANDING-" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="D-ARTICLE-BASE-" transform="translate(-591.000000, -104.000000)">
+            <g id="VITRINE">
+                <g id="tache" transform="translate(591.000000, 80.000000)">
+                    <path d="M-5.1159077e-13,420 C18.6719609,356.040275 64.0055028,321.395424 136.000626,316.065447 C243.99331,308.070481 331.993715,348.045309 361.993853,268.095653 C391.993991,188.145997 578.010472,139.176832 648.002981,248.108239 C694.664654,320.729177 761.663661,363.693097 849,377 L849,420 L-5.1159077e-13,420 Z" id="Path-4" fill="#281586" fill-rule="nonzero"></path>
+                    <text id="%" opacity="0.434500558" font-family="ProzaLibre-Regular, Proza Libre" font-size="100" font-weight="normal" fill="#FF8F5E">
+                        <tspan x="782" y="97">%</tspan>
+                    </text>
+                    <text id="+" transform="translate(696.705976, 219.555934) rotate(-20.000000) translate(-696.705976, -219.555934) " font-family="ProzaLibre-Regular, Proza Libre" font-size="60" font-weight="normal" fill="#FF8F5E">
+                        <tspan x="677.705976" y="237.055934">+</tspan>
+                    </text>
+                    <text id="°" transform="translate(372.356744, 142.700884) rotate(-20.000000) translate(-372.356744, -142.700884) " font-family="ProzaLibre-Regular, Proza Libre" font-size="60" font-weight="normal" fill="#25B3C6">
+                        <tspan x="355.856744" y="160.200884">°</tspan>
+                    </text>
+                    <text id="-" transform="translate(334.513680, 317.078594) rotate(41.000000) translate(-334.513680, -317.078594) " font-family="ProzaLibre-Regular, Proza Libre" font-size="60" font-weight="normal" fill="#FF8F5E">
+                        <tspan x="320.01368" y="334.578594">-</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

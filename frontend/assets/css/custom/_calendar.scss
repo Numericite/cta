@@ -1,0 +1,82 @@
+.calendar-wrapper {
+  
+  .cv-header {
+    @apply rounded-t-lg bg-blue p-4 border-none;
+
+    .cv-header-nav > button {
+
+      @apply outline-none;
+
+      &:nth-child(3) {
+        @apply bg-white text-blue px-6 rounded-lg;
+      }
+
+      &:not(:nth-child(3)) {
+        @apply bg-ms-purple-light-5 rounded-lg;
+      }
+
+      &:not(:last-child) {
+        @apply mr-3;
+      }
+    }
+
+    .periodLabel {
+      @apply text-white;
+    }
+  }
+
+  .cv-header-days {
+
+    @apply border-l border-r border-ms-purple-light-4;
+
+    & > div {
+      @apply bg-ms-purple-light-5 text-blue p-3;
+
+      &:not(:last-child) {
+        @apply border-r border-ms-purple-light-4;
+      }
+    }
+
+  }
+
+  .cv-weeks {
+    @apply rounded-b-lg border-r border-ms-purple-light-4;
+
+    & > div {
+      @apply min-h-125;
+    }
+
+    .cv-item {
+      @apply border-0 text-blue p-2 rounded-lg;
+
+      .startTime {
+        @apply block mt-1 mb-2 font-medium;
+      }
+    }
+
+    .cv-day {
+      @apply p-2 border-ms-purple-light-5 text-ms-gray-dark;
+
+      &.outsideOfMonth {
+        @apply bg-white-grayish;
+      }
+
+      &.today::after {
+          content: '';
+          @apply block bg-ms-purple-light-4;
+          width: 5px;
+          height: 5px;
+          margin-top: 0.75rem;
+          margin-left: 0.05rem;
+          border-radius: 50%;
+      }
+      
+
+      &:last-child {
+        @apply border-r-0;
+      }
+    }
+
+  }
+
+}

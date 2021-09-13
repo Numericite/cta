@@ -1,0 +1,20 @@
+swagger: "2.0"
+info:
+  title: "CTA API - Swagger module"
+  description: "by Numericite"
+  version: "1.0.0"
+host: localhost:7000
+basePath: /
+schemes:
+  - "http"
+consumes:
+  - application/json
+produces:
+  - application/json
+parameters:
+ domain:
+   name: "X-Auth-Token"
+   in: header
+   description: option auth token
+   required: false
+   type: string

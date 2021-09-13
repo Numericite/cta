@@ -1,0 +1,98 @@
+.flexContainer {
+  margin-left: auto;
+  margin-right: auto;
+
+  @screen xsm {
+    padding: 0 1rem;
+  }
+
+  @screen sm {
+    padding: 0 1rem;
+  }
+
+  @screen md {
+    padding: 0 calc((100% - 992px)/2);
+  }
+
+  @screen xl {
+    padding: 0 calc((100% - 1150px)/2);
+  }
+
+  @screen xxl {
+    padding: 0 calc((100% - 1480px)/2);
+  }
+}
+
+.ms-container {
+  @screen xsm {
+    width: auto;
+    margin-left: auto;
+  }
+  @screen sm {
+    width: auto;
+    margin-left: auto;
+  }
+
+  @screen md {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @screen xl {
+    width: 920px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @screen xxl {
+    width: 920px;
+
+  }
+}
+.flexContainer-dash {
+  margin-left: auto;
+  margin-right: auto;
+
+  @screen xsm {
+    padding: 0 1rem;
+  }
+
+  @screen sm {
+    padding: 0 1rem;
+  }
+
+  @screen md {
+    padding: 0 calc((100% - 1150px)/2);
+  }
+
+  @screen xl {
+    padding: 0 calc((100% - 1150px)/2);
+  }
+
+  @screen xxl {
+    padding: 0 calc((100% - 1150px)/2);
+  }
+}
+
+.flexContainer-xl {
+  padding: 0 17rem;
+}
+
+@media (max-width: 992px) {
+  .flexContainer-xl {
+    padding: 0 8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .flexContainer-xl {
+    padding: 0 6rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .flexContainer-xl {
+    padding: 0 3rem;
+  }
+}

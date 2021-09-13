@@ -1,0 +1,19 @@
+/* Reset */
+@import 'reset.scss';
+
+* {
+  text-rendering: optimizeLegibility;
+  font-smoothing: antialiased;
+}
+
+/* Typo */
+@import 'typo.scss';
+
+/* Interface */
+@import 'interface.scss';
+
+/* Custom Class */
+@import 'custom.scss';
+
+$pretty--color-primary:#1DD4B6;
+@import '~pretty-checkbox/src/pretty-checkbox.scss';

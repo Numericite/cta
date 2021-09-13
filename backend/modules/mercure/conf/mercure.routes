@@ -1,0 +1,348 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+#date
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /server/date                            @controllers.mercure.Application.getServerDate
+
+#init app
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET         /                                    @controllers.mercure.Application.index
+
+#init app
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET         /install                              controllers.mercure.Application.install
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: first install
+#      schema:
+#        $ref: '#/definitions/model.mercure.daos.user.User'
+###
+POST        /install/:secret                      controllers.mercure.Application.setup(secret: String)
+
+#dashboard
+#GET     /dashboard                               controllers.mercure.Application.dashboard()
+
+#basic url & auth
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET         /logout                               @controllers.mercure.Session.logout
+
+
+
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: email & password
+###
+POST        /auth/login                           @controllers.mercure.Session.authenticate
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new user
+#      schema:
+#        $ref: '#/definitions/model.mercure.daos.user.User'
+###
+POST        /auth/signup                          @controllers.mercure.Session.signUp(generated: Boolean)
+###
+
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET         /auth/password                        @controllers.mercure.Session.forgottenPassword(email: String, isHash: Option[Boolean])
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: reset password with token
+###
+POST        /auth/password/reset                  @controllers.mercure.Session.resetPasswordFromToken
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify your password
+###
+POST        /auth/password/modify                 @controllers.mercure.Session.modifyPassword
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE      /auth/close/account/:email            @controllers.mercure.Session.closeAccount(email: String, providerID: Option[String])
+
+
+###
+#  summary: log user
+#  description: auth user post
+#  parameters:
+#    - name: email
+#      description: login identifier
+#      format: int
+#    - name: password
+#      description: your password
+#      format: int
+#  responses:
+#    200:
+#      description: Profile information for a user
+#      schema:
+#        $ref: '#/definitions/package model.mercure.daos.user.User'
+###
+
+
+#Social auth
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+POST         /authenticate/:provider               @controllers.mercure.SocialAuthCtrl.authenticate(provider)
+
+
+#user
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: update your user infos normal
+#      schema:
+#        $ref: '#/definitions/model.mercure.daos.user.User'
+###
+POST    /user/update/normal/:email                              @controllers.mercure.UserCtrl.updateUser(email: String)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: update your user infos normal admin
+#      schema:
+#        $ref: '#/definitions/model.mercure.daos.user.User'
+###
+POST    /user/update/admin/:id                              @controllers.mercure.UserCtrl.updateUserAdmin(id: String)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /user                                  @controllers.mercure.UserCtrl.userList(page: Int ?= 1, numberByPage: Int ?= 25, email: Option[String], firstName: Option[String], lastName: Option[String], active: Option[Boolean], isValidated: Option[Boolean], sortByFirstName: Option[Int], sortByLastName: Option[Int], accountType: Option[String])
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /user/search/fullname                                  @controllers.mercure.UserCtrl.searchByFullName(fullName: String)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /user/search                                  @controllers.mercure.UserCtrl.search(email: Option[String], firstName: Option[String], lastName: Option[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /user/email/:email                                  @controllers.mercure.UserCtrl.getByEmail(email: String)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /user/count                                  @controllers.mercure.UserCtrl.count(active: Option[Boolean], isValidated: Option[Boolean])
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /user/list/ids                         @controllers.mercure.UserCtrl.getUserByIds(ids: List[String])
+
+
+POST 	/user/logos/:user_id                   @controllers.mercure.UserCtrl.uploadLogo(user_id: String)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /logos/*filename                       @controllers.mercure.UserCtrl.getLogo(filename: String)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /user/valid                            @controllers.mercure.UserCtrl.validate(email:String)
+
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new category
+#      schema:
+#        $ref: '#/definitions/model.mercure.daos.category.Category'
+###
+POST    /category                               @controllers.mercure.CategoryCtrl.create
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify your category
+#      schema:
+#        $ref: '#/definitions/model.mercure.daos.category.Category'
+###
+POST    /category/:id                           @controllers.mercure.CategoryCtrl.update(id: String)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /category/count/all                                  @controllers.mercure.CategoryCtrl.count
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /category                               @controllers.mercure.CategoryCtrl.categoryList(page: Int ?= 1, numberByPage: Int ?= 25, first_created_date: Option[Boolean])
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /category                               @controllers.mercure.CategoryCtrl.removeByIds(ids: List[String])
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+POST 	/category/logos/:category_id                         @controllers.mercure.CategoryCtrl.uploadLogo(category_id: String)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new status
+#      schema:
+#        $ref: '#/definitions/model.mercure.daos.status.Status'
+###
+POST    /status                                  @controllers.mercure.StatusCtrl.createStatus
+
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /status/count/all                                  @controllers.mercure.StatusCtrl.count
+
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify an existing status
+#      schema:
+#        $ref: '#/definitions/model.mercure.daos.status.Status'
+###
+POST    /status/:id                              @controllers.mercure.StatusCtrl.updateStatus(id: String)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /status                                  @controllers.mercure.StatusCtrl.statusList(page: Int ?= 1, numberByPage: Int ?= 25)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /status/:id                              @controllers.mercure.StatusCtrl.findStatusById(id: String)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /status                                  @controllers.mercure.StatusCtrl.removeByIds(ids: List[String])
+
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new status
+#      schema:
+#        $ref: '#/definitions/model.mercure.daos.status.Status'
+###
+POST    /status                                  @controllers.mercure.StatusCtrl.createStatus
+
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /status/count/all                                  @controllers.mercure.StatusCtrl.count
+
+
+
+
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new  emailing template
+#      schema:
+#        $ref: '#/definitions/model.mercure.daos.email.Template'
+###
+POST    /template                                  @controllers.mercure.EmailTemplateCtrl.create
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify an existing template
+#      schema:
+#        $ref: '#/definitions/model.mercure.daos.email.Template'
+###
+POST    /template/:id                              @controllers.mercure.EmailTemplateCtrl.update(id: String)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /template                                  @controllers.mercure.EmailTemplateCtrl.list(page: Int ?= 1, numberByPage: Int ?= 25)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /template/:id                              @controllers.mercure.EmailTemplateCtrl.getById(id: String)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /template                                  @controllers.mercure.EmailTemplateCtrl.removeByIds(ids: List[String])

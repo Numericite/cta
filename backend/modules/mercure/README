@@ -1,0 +1,33 @@
+# IDEMOP
+This is the backend api for IDEMOP, an collaborative platform intended to make us RICH (with peace, love and transcendance)
+
+## Installation & launching
+
+```
+git clone this project
+```
+
+### Install MongoDB
+  1. Download MongoDB at http://www.mongodb.org/downloads under "Download and Run MongoDB Yourself" => Current Release
+  2. Create a C:/data/db directory on your computer
+  3. Open cmd and go to C:\Program Files\MongoDB\Server\3.0\bin
+  4. Run mongod.exe
+  5. /!\ Keep this CMD open /!\
+## new versions? Restore your local database!
+ 1. **mongo** (to launch mongo)
+ 2. **use XXXXXXX**
+ 3. **db.dropDatabase()**
+ 4. Click on the **Launh test"** in the main page(localhost:9000) to resync the database
+
+### Then in the project folder in a new cmd
+  1. **activator run** (wait for downloading/configuration to finish)
+  2. open your favorite browser and launch **http://localhost:9000** (may take some seconds the first time => compilation)
+  3. click on the launch button
+  4. enjoy the result
+
+### To configure the project to be imported in eclipse
+  1. launch **activator eclipse**
+  2. Import the project as existing project (can launch activator run to enjoy the hot reload ;))
+
+
+### new dev

@@ -1,0 +1,2912 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+GET         /                                              @controllers.Application.main
+
+GET   /docs/swagger.json                                   @controllers.swagger.ApiSpecs.specs
+GET   /docs/swagger-ui/*file                               controllers.Assets.at(path:String="/public/lib/swagger-ui", file:String)
+
+### mercure routes
+->  /mercure mercure.Routes
+
+GET    /current                           @controllers.Application.index
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: email & password
+###
+POST        /mercure/auth/login                           @controllers.mercure.Application.index
+
+###
+#  description: toit+moi user ids from mercure != of standard users
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /user/list-free/ids                                           @controllers.mercure.UserCtrl.userByIdsIDP(ids: List[String])
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /user/validation/:token                                           @controllers.mercure.Session.userValidation(token: String)
+
+###
+#  tags:
+#    - teacher
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET    /teacher/count/students                                  @controllers.cta.TeacherCtrl.countStudents(classroom_ids: List[String])
+
+###
+#  tags:
+#    - teacher
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET    /teacher/list/students                                  @controllers.cta.TeacherCtrl.getStudents(classroom_ids: List[String], page: Int, numberPerPage: Int)
+
+###
+#  tags:
+#    - teacher
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET    /teacher/search/students/:fullName                                  @controllers.cta.TeacherCtrl.getStudentsByFullName(classroom_ids: List[String], fullName: String)
+
+###
+#  tags:
+#    - teacher
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET    /teacher/count                                            @controllers.cta.TeacherCtrl.count(school_ids: Option[List[String]], grade: Option[Int], classroom_id: Option[String])
+
+###
+#  tags:
+#    - teacher
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET    /teacher/list                                            @controllers.cta.TeacherCtrl.getList(page: Int, numberPerPage: Int, school_ids: Option[List[String]])
+
+###
+#  tags:
+#    - teacher
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET    /teacher/list/filters                                    @controllers.cta.TeacherCtrl.getTeachers(page: Int, numberPerPage: Int, school_ids: Option[List[String]], grade: Option[Int], classroom_id: Option[String])
+
+###
+#  tags:
+#    - teacher
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET    /teacher/search/:fullName                                  @controllers.cta.TeacherCtrl.searchByFullName(fullName: String)
+
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: reinit user
+###
+POST    /user/reinit/:id/:accountType                              @controllers.cta.UserCtrl.reInitUser(id: String, accountType: String)
+
+###
+#  tags:
+#    - parent
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET    /parent/list/students                                  @controllers.cta.ParentCtrl.getChildren(parent_id: String, page: Int, numberPerPage: Int)
+
+###
+#  tags:
+#    - parent
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /parent/list/all                                       @controllers.cta.ParentCtrl.getParents(page: Int, numberPerPage: Int)
+
+###
+#  tags:
+#    - parent
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET    /mentor/list/students                                  @controllers.cta.MentorCtrl.getMentees(mentor_id: String, page: Int, numberPerPage: Int)
+
+###
+#  tags:
+#    - parent
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /mentor/list/all                                       @controllers.cta.MentorCtrl.getMentors(page: Int, numberPerPage: Int)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: email & password
+#      schema:
+#        type: object
+#        properties:
+#          email:
+#           type: string
+#          password:
+#           type: string
+###
+POST        /auth/login/validated                           @controllers.mercure.Session.authenticateWithValidation
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new user
+#      schema:
+#        $ref: '#/definitions/model.mercure.daos.user.User'
+###
+POST        /auth/signup/validated                          @controllers.mercure.Session.signUpWithValidation
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new user
+#      schema:
+#        $ref: '#/definitions/model.mercure.daos.user.User'
+###
+POST    /auth/admin/activate                           @controllers.mercure.Session.adminValidation
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new user
+#      schema:
+#        $ref: '#/definitions/model.mercure.daos.user.User'
+###
+DELETE    /auth/admin/refuse                           @controllers.mercure.Session.refuseAccount(email: String, providerID: String)
+
+
+# location
+
+###
+#  tags:
+#    - location
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new location
+#      schema:
+#        $ref: '#/definitions/models.daos.location.Location'
+###
+POST    /location                                         @controllers.LocationCtrl.create
+
+###
+#  tags:
+#    - location
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify location
+#      schema:
+#        $ref: '#/definitions/models.daos.location.Location'
+###
+POST    /location/:id                                     @controllers.LocationCtrl.updateLocation(id: String)
+
+###
+#  tags:
+#    - location
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /location                                         @controllers.LocationCtrl.locationList(page: Int ?= 1, numberPerPage: Int ?= 25)
+
+###
+#  tags:
+#    - location
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /location/list/ids                                @controllers.LocationCtrl.getLocationByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+
+
+###
+#  tags:
+#    - location
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /location/search/:state                                @controllers.LocationCtrl.search(state: String)
+
+###
+#  tags:
+#    - location
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /location/check/exists                            @controllers.LocationCtrl.exists(country: String, district: String, city: String, state:String, street: String)
+
+###
+#  tags:
+#    - location
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /location/:id                                     @controllers.LocationCtrl.removeById(id: String)
+
+## notifications
+
+###
+#  tags:
+#    - notification
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new notification
+#      schema:
+#        $ref: '#/definitions/models.daos.notification.Notification'
+###
+POST    /notification                                           @controllers.cta.NotificationCtrl.create
+
+###
+#  tags:
+#    - notification
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify notification
+#      schema:
+#        $ref: '#/definitions/models.daos.notification.Notification'
+###
+POST    /notification/:id                                       @controllers.cta.NotificationCtrl.update(id: String)
+
+###
+#  tags:
+#    - notification
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: reset notification value
+#      schema:
+#        $ref: '#/definitions/models.daos.notification.Notification'
+###
+POST    /notification/reset/:user_id                           @controllers.cta.NotificationCtrl.reset(user_id: String)
+
+###
+#  tags:
+#    - notification
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /notification/user/:user_id                         @controllers.cta.NotificationCtrl.getByUserId(user_id: String)
+
+###
+#  tags:
+#    - notification
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /notification/user/:user_id                          @controllers.cta.NotificationCtrl.removeByUserId(user_id: String)
+
+###
+#  tags:
+#    - notification
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /notification                                         @controllers.cta.NotificationCtrl.removeByIds(ids: List[String])
+
+# posts
+
+###
+#  tags:
+#    - post
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new post
+#      schema:
+#        $ref: '#/definitions/models.daos.post.Post'
+###
+POST   /post				                           @controllers.cta.PostCtrl.create
+
+###
+#  tags:
+#    - post
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify post
+#      schema:
+#        $ref: '#/definitions/models.daos.post.Post'
+###
+POST   /post/:id				                       @controllers.cta.PostCtrl.update(id: String)
+
+###
+#  tags:
+#    - post
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: update post status
+#      schema:
+#        $ref: '#/definitions/models.daos.post.Post'
+###
+POST     /post/status/:post_id/:renewal                     @controllers.cta.PostCtrl.updateStatus(post_id: String, renewal: Boolean)
+
+###
+#  tags:
+#    - post
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /post/count                                        @controllers.cta.PostCtrl.count(status_names: Option[List[String]], title: Option[String])
+
+###
+#  tags:
+#    - post
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET	   /post/list					                       @controllers.cta.PostCtrl.getList(page: Int ?= 1, numberPerPage: Int ?= 25, status_names: Option[List[String]], title: Option[String], exclude_ids: Option[List[String]], pinnedFirst: Option[Boolean])
+
+###
+#  tags:
+#    - post
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET	   /post/list/ids 		                       @controllers.cta.PostCtrl.getByIds(ids: List[String])
+
+###
+#  tags:
+#    - post
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+POST   /post/logos/:post_id                        @controllers.cta.PostCtrl.uploadLogo(post_id: String)
+
+###
+#  tags:
+#    - post
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE /post                                           @controllers.cta.PostCtrl.removeByIds(ids: List[String])
+
+# tags
+
+###
+#  tags:
+#    - tag
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new training
+#      schema:
+#        $ref: '#/definitions/models.daos.tag.Tag'
+###
+POST    /tag                                           @controllers.cta.TagCtrl.create
+
+###
+#  tags:
+#    - tag
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify training
+#      schema:
+#        $ref: '#/definitions/models.daos.tag.Tag'
+###
+POST    /tag/:id                                       @controllers.cta.TagCtrl.update(id: String)
+
+###
+#  tags:
+#    - tag
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /tag/list                                  @controllers.cta.TagCtrl.getList(page: Int, numberPerPage: Int)
+
+###
+#  tags:
+#    - tag
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /tag/count                                  @controllers.cta.TagCtrl.count()
+
+###
+#  tags:
+#    - tag
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /tag/list/ids                                     @controllers.cta.TagCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - tag
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /tag                                           @controllers.cta.TagCtrl.removeByIds(ids: List[String])
+
+# faqs
+
+###
+#  tags:
+#    - faq
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new training
+#      schema:
+#        $ref: '#/definitions/models.daos.faq.Faq'
+###
+POST    /faq                                           @controllers.cta.FaqCtrl.create
+
+###
+#  tags:
+#    - faq
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify training
+#      schema:
+#        $ref: '#/definitions/models.daos.faq.Faq'
+###
+POST    /faq/:id                                       @controllers.cta.FaqCtrl.update(id: String)
+
+###
+#  tags:
+#    - faq
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /faq/list                                  @controllers.cta.FaqCtrl.getList(page: Int, numberPerPage: Int)
+
+###
+#  tags:
+#    - faq
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /faq/count                                  @controllers.cta.FaqCtrl.count()
+
+###
+#  tags:
+#    - faq
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /faq/list/ids                                     @controllers.cta.FaqCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - faq
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /faq                                           @controllers.cta.FaqCtrl.removeByIds(ids: List[String])
+
+# partners
+
+###
+#  tags:
+#    - partner
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new training
+#      schema:
+#        $ref: '#/definitions/models.daos.partner.Partner'
+###
+POST    /partner                                           @controllers.cta.PartnerCtrl.create
+
+###
+#  tags:
+#    - partner
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify training
+#      schema:
+#        $ref: '#/definitions/models.daos.partner.Partner'
+###
+POST    /partner/:id                                       @controllers.cta.PartnerCtrl.update(id: String)
+
+###
+#  tags:
+#    - partner
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+POST   /partner/logos/:partner_id                        @controllers.cta.PartnerCtrl.uploadLogo(partner_id: String)
+
+###
+#  tags:
+#    - partner
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /partner/list                                  @controllers.cta.PartnerCtrl.getList(page: Int, numberPerPage: Int)
+
+###
+#  tags:
+#    - partner
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /partner/count                                  @controllers.cta.PartnerCtrl.count()
+
+###
+#  tags:
+#    - partner
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /partner/list/ids                                     @controllers.cta.PartnerCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - partner
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET    /partner/count/explorationstype                                  @controllers.cta.PartnerCtrl.countExplorationsType(partner_slug: String, school_ids: List[String], grade: Option[Int], classroom_id: Option[String], name: Option[String])
+
+###
+#  tags:
+#    - partner
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET    /partner/list/explorationstype                                  @controllers.cta.PartnerCtrl.getExplorationsType(partner_slug: String, school_ids: List[String], grade: Option[Int], classroom_id: Option[String], name: Option[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - partner
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET    /partner/stats                                  @controllers.cta.PartnerCtrl.getPartnerStats(partner_slug: Option[String], school_ids: Option[List[String]], grade: Option[Int], classroom_id: Option[String], kind: Option[String])
+
+###
+#  tags:
+#    - partner
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /partner                                           @controllers.cta.PartnerCtrl.removeByIds(ids: List[String])
+
+# internships
+
+###
+#  tags:
+#    - internship
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new training
+#      schema:
+#        $ref: '#/definitions/models.daos.internship.Internship'
+###
+POST    /internship                                           @controllers.cta.InternshipCtrl.create
+
+###
+#  tags:
+#    - internship
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify training
+#      schema:
+#        $ref: '#/definitions/models.daos.internship.Internship'
+###
+POST    /internship/:id                                       @controllers.cta.InternshipCtrl.update(id: String)
+
+###
+#  tags:
+#    - internship
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /internship/list                                  @controllers.cta.InternshipCtrl.getList(page: Int, numberPerPage: Int)
+
+###
+#  tags:
+#    - internship
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /internship/count                                  @controllers.cta.InternshipCtrl.count()
+
+###
+#  tags:
+#    - internship
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /internship/list/ids                                     @controllers.cta.InternshipCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - internship
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /internship                                           @controllers.cta.InternshipCtrl.removeByIds(ids: List[String])
+
+# meetings
+
+###
+#  tags:
+#    - meeting
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new training
+#      schema:
+#        $ref: '#/definitions/models.daos.meeting.Meeting'
+###
+POST    /meeting                                           @controllers.cta.MeetingCtrl.create
+
+###
+#  tags:
+#    - meeting
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify training
+#      schema:
+#        $ref: '#/definitions/models.daos.meeting.Meeting'
+###
+POST    /meeting/:id                                       @controllers.cta.MeetingCtrl.update(id: String)
+
+###
+#  tags:
+#    - meeting
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /meeting/list                                  @controllers.cta.MeetingCtrl.getList(page: Int, numberPerPage: Int)
+
+###
+#  tags:
+#    - meeting
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /meeting/count                                  @controllers.cta.MeetingCtrl.count()
+
+###
+#  tags:
+#    - meeting
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /meeting/list/ids                                     @controllers.cta.MeetingCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - meeting
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /meeting                                           @controllers.cta.MeetingCtrl.removeByIds(ids: List[String])
+
+# companies
+
+###
+#  tags:
+#    - company
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new training
+#      schema:
+#        $ref: '#/definitions/models.daos.company.Company'
+###
+POST    /company                                           @controllers.cta.CompanyCtrl.create
+
+###
+#  tags:
+#    - company
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify training
+#      schema:
+#        $ref: '#/definitions/models.daos.company.Company'
+###
+POST    /company/:id                                       @controllers.cta.CompanyCtrl.update(id: String)
+
+###
+#  tags:
+#    - company
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /company/list                                  @controllers.cta.CompanyCtrl.getList(page: Int, numberPerPage: Int)
+
+###
+#  tags:
+#    - company
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /company/count                                  @controllers.cta.CompanyCtrl.count()
+
+###
+#  tags:
+#    - company
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /company/list/ids                                     @controllers.cta.CompanyCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - company
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /company                                           @controllers.cta.CompanyCtrl.removeByIds(ids: List[String])
+
+# schools
+
+###
+#  tags:
+#    - school
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new training
+#      schema:
+#        $ref: '#/definitions/models.daos.school.School'
+###
+POST    /school                                           @controllers.cta.SchoolCtrl.create
+
+###
+#  tags:
+#    - school
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify training
+#      schema:
+#        $ref: '#/definitions/models.daos.school.School'
+###
+POST    /school/:id                                       @controllers.cta.SchoolCtrl.update(id: String)
+
+###
+#  tags:
+#    - school
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+POST   /school/logos/:school_id                        @controllers.cta.SchoolCtrl.uploadLogo(school_id: String)
+
+###
+#  tags:
+#    - school
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /school/list                                  @controllers.cta.SchoolCtrl.getList(page: Int, numberPerPage: Int, kinds: Option[List[String]])
+
+###
+#  tags:
+#    - school
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /school/count                                  @controllers.cta.SchoolCtrl.count(kinds: Option[List[String]])
+
+###
+#  tags:
+#    - school
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /school/list/ids                                     @controllers.cta.SchoolCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - school
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /school/list/grades                                     @controllers.cta.SchoolCtrl.getGradesBySchools(school_ids: Option[List[String]])
+
+###
+#  tags:
+#    - school
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /school                                           @controllers.cta.SchoolCtrl.removeByIds(ids: List[String])
+
+# schoolclassrooms
+
+###
+#  tags:
+#    - schoolClassroom
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new training
+#      schema:
+#        $ref: '#/definitions/models.daos.school.classroom.SchoolClassroom'
+###
+POST    /schoolclassroom                                           @controllers.cta.SchoolClassroomCtrl.create
+
+###
+#  tags:
+#    - schoolClassroom
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify training
+#      schema:
+#        $ref: '#/definitions/models.daos.school.classroom.SchoolClassroom'
+###
+POST    /schoolclassroom/:id                                       @controllers.cta.SchoolClassroomCtrl.update(id: String)
+
+###
+#  tags:
+#    - schoolClassroom
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /schoolclassroom/list                                  @controllers.cta.SchoolClassroomCtrl.getList(page: Int, numberPerPage: Int, school_ids: Option[List[String]], grade: Option[Int])
+
+###
+#  tags:
+#    - schoolClassroom
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /schoolclassroom/count                                  @controllers.cta.SchoolClassroomCtrl.count(school_ids: Option[List[String]], grade: Option[Int])
+
+###
+#  tags:
+#    - schoolClassroom
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /schoolclassroom/list/ids                                     @controllers.cta.SchoolClassroomCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - schoolClassroom
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /schoolclassroom                                           @controllers.cta.SchoolClassroomCtrl.removeByIds(ids: List[String])
+
+# schoolreports
+
+###
+#  tags:
+#    - schoolReport
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new training
+#      schema:
+#        $ref: '#/definitions/models.daos.school.report.SchoolReport'
+###
+POST    /schoolreport                                           @controllers.cta.SchoolReportCtrl.create
+
+###
+#  tags:
+#    - schoolReport
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify training
+#      schema:
+#        $ref: '#/definitions/models.daos.school.report.SchoolReport'
+###
+POST    /schoolreport/:id                                       @controllers.cta.SchoolReportCtrl.update(id: String)
+
+###
+#  tags:
+#    - schoolReport
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /schoolreport/list                                  @controllers.cta.SchoolReportCtrl.getList(page: Int, numberPerPage: Int, user_ids: Option[List[String]], stream_ids: Option[List[String]])
+
+###
+#  tags:
+#    - schoolReport
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /schoolreport/count                                  @controllers.cta.SchoolReportCtrl.count(user_ids: Option[List[String]], stream_ids: Option[List[String]])
+
+###
+#  tags:
+#    - schoolReport
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /schoolreport/list/ids                                     @controllers.cta.SchoolReportCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - schoolReport
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /schoolreport                                           @controllers.cta.SchoolReportCtrl.removeByIds(ids: List[String])
+
+# domains
+
+###
+#  tags:
+#    - domain
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new training
+#      schema:
+#        $ref: '#/definitions/models.daos.domain.Domain'
+###
+POST    /domain                                           @controllers.cta.DomainCtrl.create
+
+###
+#  tags:
+#    - domain
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify training
+#      schema:
+#        $ref: '#/definitions/models.daos.domain.Domain'
+###
+POST    /domain/:id                                       @controllers.cta.DomainCtrl.update(id: String)
+
+
+###
+#  tags:
+#    - domain
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+POST   /domain/logos/:domain_id                        @controllers.cta.DomainCtrl.uploadLogo(domain_id: String)
+
+###
+#  tags:
+#    - domain
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /domain/list                                  @controllers.cta.DomainCtrl.getList(page: Int, numberPerPage: Int, kind: Option[String])
+
+###
+#  tags:
+#    - domain
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /domain/count                                  @controllers.cta.DomainCtrl.count(kind: Option[String])
+
+###
+#  tags:
+#    - domain
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /domain/list/ids                                     @controllers.cta.DomainCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - domain
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /domain                                           @controllers.cta.DomainCtrl.removeByIds(ids: List[String])
+
+# documents
+
+###
+#  tags:
+#    - document
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create new document
+#      schema:
+#        $ref: '#/definitions/models.daos.document.Document'
+###
+POST 	/document/create                            @controllers.cta.DocumentCtrl.create()
+
+#  tags:
+#    - document
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: upload new document and create it
+#      schema:
+#        $ref: '#/definitions/models.daos.document.Document'
+###
+POST 	/document/:parent_type                            @controllers.cta.DocumentCtrl.upload(parent_type: String)
+
+#  tags:
+#    - document
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: upload only new document
+#      schema:
+#        $ref: '#/definitions/models.daos.document.Document'
+###
+POST 	/document/only/:parent_type                            @controllers.cta.DocumentCtrl.uploadOnly(parent_type: String)
+
+###
+#  tags:
+#    - document
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create new document
+#      schema:
+#        $ref: '#/definitions/models.daos.document.Document'
+###
+POST 	/document/update/:id                            @controllers.cta.DocumentCtrl.update(id: String)
+
+###
+#  tags:
+#    - document
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /document/list                                      @controllers.cta.DocumentCtrl.getList(parent_type: Option[String], parent_types: Option[List[String]], parent_ids: Option[List[String]], grades: Option[List[Int]], school_kinds: Option[List[String]], page: Int, numberPerPage: Int)
+
+###
+#  tags:
+#    - document
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /document/count                                      @controllers.cta.DocumentCtrl.count(parent_type: Option[String], parent_types: Option[List[String]], parent_ids: Option[List[String]], grades: Option[List[Int]], school_kinds: Option[List[String]])
+
+###
+#  tags:
+#    - document
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE /document                                            @controllers.cta.DocumentCtrl.removeByIds(ids: List[String])
+
+# activities
+
+###
+#  tags:
+#    - activity
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new activity
+#      schema:
+#        $ref: '#/definitions/models.daos.activity.Activity'
+###
+POST   /activity				                           @controllers.cta.ActivityCtrl.create
+
+###
+#  tags:
+#    - activity
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify activity
+#      schema:
+#        $ref: '#/definitions/models.daos.activity.Activity'
+###
+POST   /activity/:id				                       @controllers.cta.ActivityCtrl.update(id: String)
+
+###
+#  tags:
+#    - activity
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: update activity status
+#      schema:
+#        $ref: '#/definitions/models.daos.activity.Activity'
+###
+POST     /activity/status/:activity_id                     @controllers.cta.ActivityCtrl.updateStatus(activity_id: String)
+
+###
+#  tags:
+#    - activity
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /activity/count                                        @controllers.cta.ActivityCtrl.count(status_names: Option[List[String]], title: Option[String])
+
+###
+#  tags:
+#    - activity
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET	   /activity/list					                       @controllers.cta.ActivityCtrl.getList(page: Int ?= 1, numberPerPage: Int ?= 25, status_names: Option[List[String]], name: Option[String])
+
+###
+#  tags:
+#    - activity
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET	   /activity/list/ids 		                       @controllers.cta.ActivityCtrl.getByIds(ids: List[String])
+
+###
+#  tags:
+#    - activity
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE /activity                                           @controllers.cta.ActivityCtrl.removeByIds(ids: List[String])
+
+# activityToken
+
+
+###
+#  tags:
+#    - activityToken
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create activityToken
+#      schema:
+#        $ref: '#/definitions/models.daos.activity.token.ActivityToken'
+###
+POST     /activitytoken                               @controllers.cta.ActivityTokenCtrl.create
+
+###
+#  tags:
+#    - activityToken
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+POST     /activitytoken/validate/:token_id                                        @controllers.cta.ActivityTokenCtrl.validateToken(token_id: String)
+
+###
+#  tags:
+#    - activityToken
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /activitytoken/user/:user_id                                        @controllers.cta.ActivityTokenCtrl.getByUserId(user_id: String, activity_id: String)
+
+###
+#  tags:
+#    - activityToken
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /activitytoken/check/:token_id                                        @controllers.cta.ActivityTokenCtrl.checkValidity(activity_id: String, token_id: String)
+
+# activityLog
+
+###
+#  tags:
+#    - activityLog
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create activityLog
+#      schema:
+#        $ref: '#/definitions/models.daos.activity.log.ActivityLog'
+###
+POST     /activitylog                               @controllers.cta.ActivityLogCtrl.create
+
+###
+#  tags:
+#    - activityLog
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: update activityLog status
+#      schema:
+#        $ref: '#/definitions/models.daos.activity.log.ActivityLog'
+###
+POST     /activitylog/status/:id                      @controllers.cta.ActivityLogCtrl.updateStatus(id: String)
+
+###
+#  tags:
+#    - activityLog
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /activitylog/user/:user_id                                        @controllers.cta.ActivityLogCtrl.getByUserId(user_id: String, activity_id: Option[String])
+
+###
+#  tags:
+#    - activityLog
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /activitylog/advanced/:user_id                                        @controllers.cta.ActivityLogCtrl.getUserAdvancedLogs(user_id: String)
+
+###
+#  tags:
+#    - activityLog
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /activitylog/history/:user_id                                        @controllers.cta.ActivityLogCtrl.getUserHistory(user_id: String)
+
+###
+#  tags:
+#    - activityLog
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /activitylog/undone/:user_id                                        @controllers.cta.ActivityLogCtrl.getUserUndoneActivities(user_id: String, course_id: String)
+
+# selectors
+
+###
+#  tags:
+#    - selector
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new training
+#      schema:
+#        $ref: '#/definitions/models.daos.selector.Selector'
+###
+POST    /selector                                           @controllers.cta.SelectorCtrl.create
+
+###
+#  tags:
+#    - selector
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify training
+#      schema:
+#        $ref: '#/definitions/models.daos.selector.Selector'
+###
+POST    /selector/:id                                       @controllers.cta.SelectorCtrl.update(id: String)
+
+###
+#  tags:
+#    - selector
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /selector/list                                  @controllers.cta.SelectorCtrl.getList(page: Int, numberPerPage: Int, selection_ids: Option[List[String]])
+
+###
+#  tags:
+#    - selector
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /selector/count                                  @controllers.cta.SelectorCtrl.count(selection_ids: Option[List[String]])
+
+###
+#  tags:
+#    - selector
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /selector/list/ids                                     @controllers.cta.SelectorCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - selector
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /selector                                           @controllers.cta.SelectorCtrl.removeByIds(ids: List[String])
+
+
+# choices
+
+###
+#  tags:
+#    - choice
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new training
+#      schema:
+#        $ref: '#/definitions/models.daos.choice.Choice'
+###
+POST    /choice                                           @controllers.cta.ChoiceCtrl.create
+
+###
+#  tags:
+#    - choice
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify training
+#      schema:
+#        $ref: '#/definitions/models.daos.choice.Choice'
+###
+POST    /choice/:id                                       @controllers.cta.ChoiceCtrl.update(id: String)
+
+###
+#  tags:
+#    - choice
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+POST   /choice/logos/:choice_id                        @controllers.cta.ChoiceCtrl.uploadLogo(choice_id: String)
+
+###
+#  tags:
+#    - choice
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /choice/list                                  @controllers.cta.ChoiceCtrl.getList(page: Int, numberPerPage: Int, selection_ids: Option[List[String]])
+
+###
+#  tags:
+#    - choice
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /choice/count                                  @controllers.cta.ChoiceCtrl.count(selection_ids: Option[List[String]])
+
+###
+#  tags:
+#    - choice
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /choice/list/ids                                     @controllers.cta.ChoiceCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - choice
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /choice                                           @controllers.cta.ChoiceCtrl.removeByIds(ids: List[String])
+
+# selections
+
+###
+#  tags:
+#    - selection
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new training
+#      schema:
+#        $ref: '#/definitions/models.daos.selection.Selection'
+###
+POST    /selection                                           @controllers.cta.SelectionCtrl.create
+
+###
+#  tags:
+#    - selection
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify training
+#      schema:
+#        $ref: '#/definitions/models.daos.selection.Selection'
+###
+POST    /selection/:id                                       @controllers.cta.SelectionCtrl.update(id: String)
+
+###
+#  tags:
+#    - selection
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+POST   /selection/logos/:selection_id                        @controllers.cta.SelectionCtrl.uploadLogo(selection_id: String)
+
+###
+#  tags:
+#    - selection
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /selection/list                                  @controllers.cta.SelectionCtrl.getList(page: Int, numberPerPage: Int, activity_ids: Option[List[String]], version_ids: Option[List[String]])
+
+###
+#  tags:
+#    - selection
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /selection/count                                  @controllers.cta.SelectionCtrl.count(activity_ids: Option[List[String]], version_ids: Option[List[String]])
+
+###
+#  tags:
+#    - selection
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /selection/list/ids                                     @controllers.cta.SelectionCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - selection
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /selection                                           @controllers.cta.SelectionCtrl.removeByIds(ids: List[String])
+
+# results
+
+###
+#  tags:
+#    - result
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new training
+#      schema:
+#        $ref: '#/definitions/models.daos.result.Result'
+###
+POST    /result                                           @controllers.cta.ResultCtrl.create
+
+###
+#  tags:
+#    - result
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create many results
+###
+POST    /results/:user_id                               @controllers.cta.ResultCtrl.createMany(user_id: String)
+
+###
+#  tags:
+#    - result
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify training
+#      schema:
+#        $ref: '#/definitions/models.daos.result.Result'
+###
+POST    /result/:id                                       @controllers.cta.ResultCtrl.update(id: String)
+
+###
+#  tags:
+#    - result
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /result/list                                  @controllers.cta.ResultCtrl.getList(page: Int, numberPerPage: Int, user_id: Option[String])
+
+###
+#  tags:
+#  tags:
+#    - result
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /result/count                                  @controllers.cta.ResultCtrl.count(user_id: Option[String])
+
+###
+#  tags:
+#    - result
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /result/list/ids                                     @controllers.cta.ResultCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - result
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /result                                           @controllers.cta.ResultCtrl.removeByIds(ids: List[String])
+
+# experiences
+
+###
+#  tags:
+#    - experience
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new training
+#      schema:
+#        $ref: '#/definitions/models.daos.experience.Experience'
+###
+POST    /experience                                           @controllers.cta.ExperienceCtrl.create
+
+###
+#  tags:
+#    - experience
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify training
+#      schema:
+#        $ref: '#/definitions/models.daos.experience.Experience'
+###
+POST    /experience/:id                                       @controllers.cta.ExperienceCtrl.update(id: String)
+
+###
+#  tags:
+#    - experience
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify experience
+#      schema:
+#        $ref: '#/definitions/models.daos.experience.Experience'
+###
+POST  /experience/mine/:id/:user_id                      @controllers.cta.ExperienceCtrl.updateMine(id: String, user_id: String)
+
+###
+#  tags:
+#    - experience
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /experience/list                                  @controllers.cta.ExperienceCtrl.getList(page: Int, numberPerPage: Int, user_id: Option[String], kind: Option[String])
+
+###
+#  tags:
+#    - experience
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /experience/count                                  @controllers.cta.ExperienceCtrl.count()
+
+###
+#  tags:
+#    - experience
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /experience/list/ids                                     @controllers.cta.ExperienceCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - experience
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /experience                                           @controllers.cta.ExperienceCtrl.removeByIds(ids: List[String])
+
+###
+#  tags:
+#    - experience
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /experience/mine/:user_id                                           @controllers.cta.ExperienceCtrl.removeMineByIds(ids: List[String], user_id: String)
+
+# resources
+
+###
+#  tags:
+#    - resource
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new training
+#      schema:
+#        $ref: '#/definitions/models.daos.resource.Resource'
+###
+POST    /resource                                           @controllers.cta.ResourceCtrl.create
+
+###
+#  tags:
+#    - resource
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify training
+#      schema:
+#        $ref: '#/definitions/models.daos.resource.Resource'
+###
+POST    /resource/:id                                       @controllers.cta.ResourceCtrl.update(id: String)
+
+###
+#  tags:
+#    - resource
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+POST   /resource/logos/:resource_id                        @controllers.cta.ResourceCtrl.uploadLogo(resource_id: String)
+
+###
+#  tags:
+#    - resource
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /resource/list                                  @controllers.cta.ResourceCtrl.getList(page: Int, numberPerPage: Int, parent_type: Option[String])
+
+###
+#  tags:
+#    - resource
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /resource/count                                  @controllers.cta.ResourceCtrl.count(parent_type: Option[String])
+
+###
+#  tags:
+#    - resource
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /resource/list/ids                                     @controllers.cta.ResourceCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - resource
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /resource                                           @controllers.cta.ResourceCtrl.removeByIds(ids: List[String])
+
+# details
+
+###
+#  tags:
+#    - detail
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new detail
+###
+POST    /detail                                           @controllers.cta.DetailCtrl.create
+
+###
+#  tags:
+#    - detail
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify detail
+#      schema:
+#        $ref: '#/definitions/models.daos.detail.Detail'
+###
+POST    /detail/:id                                       @controllers.cta.DetailCtrl.update(id: String)
+
+###
+#  tags:
+#    - detail
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /detail/list                                  @controllers.cta.DetailCtrl.getList(page: Int, numberPerPage: Int, domain_ids: Option[List[String]])
+
+###
+#  tags:
+#    - detail
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /detail/count                                  @controllers.cta.DetailCtrl.count(domain_ids: Option[List[String]])
+
+###
+#  tags:
+#    - detail
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /detail/list/ids                                     @controllers.cta.DetailCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - detail
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /detail                                           @controllers.cta.DetailCtrl.removeByIds(ids: List[String])
+
+
+# files
+
+###
+#  tags:
+#    - file
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new file
+###
+POST    /file                                           @controllers.cta.FileCtrl.create
+
+###
+#  tags:
+#    - file
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify file
+#      schema:
+#        $ref: '#/definitions/models.daos.file.File'
+###
+POST    /file/:id                                       @controllers.cta.FileCtrl.update(id: String)
+
+###
+#  tags:
+#    - file
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /file/tree                                  @controllers.cta.FileCtrl.getTreeList()
+
+###
+#  tags:
+#    - file
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /file/front                                 @controllers.cta.FileCtrl.getFrontTexts(version_name: Option[String])
+
+###
+#  tags:
+#    - file
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /file/list                                  @controllers.cta.FileCtrl.getList(page: Int, numberPerPage: Int, kind: Option[String], parent_ids: Option[List[String]])
+
+###
+#  tags:
+#    - file
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /file/count                                  @controllers.cta.FileCtrl.count(kind: Option[String], parent_ids: Option[List[String]])
+
+###
+#  tags:
+#    - file
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /file/list/ids                                     @controllers.cta.FileCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - file
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /file                                           @controllers.cta.FileCtrl.removeByIds(ids: List[String])
+
+# versions
+
+###
+#  tags:
+#    - version
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new version
+###
+POST    /version                                           @controllers.cta.VersionCtrl.create
+
+###
+#  tags:
+#    - version
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify version
+#      schema:
+#        $ref: '#/definitions/models.daos.version.Version'
+###
+POST    /version/:id                                       @controllers.cta.VersionCtrl.update(id: String)
+
+###
+#  tags:
+#    - version
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /version/list                                  @controllers.cta.VersionCtrl.getList(page: Int, numberPerPage: Int, kind: String, parent_ids: Option[List[String]], isDefault: Option[Boolean])
+
+###
+#  tags:
+#    - version
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /version/count                                  @controllers.cta.VersionCtrl.count(kind: String, parent_ids: Option[List[String]], isDefault: Option[Boolean])
+
+###
+#  tags:
+#    - version
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /version/list/ids                                     @controllers.cta.VersionCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - version
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /version/file/names                                 @controllers.cta.VersionCtrl.getAvailableNames()
+
+###
+#  tags:
+#    - version
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /version                                           @controllers.cta.VersionCtrl.removeByIds(ids: List[String])
+
+# pages
+
+###
+#  tags:
+#    - page
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new page
+###
+POST    /page                                           @controllers.cta.PageCtrl.create
+
+###
+#  tags:
+#    - page
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify page
+#      schema:
+#        $ref: '#/definitions/models.daos.page.Page'
+###
+POST    /page/:id                                       @controllers.cta.PageCtrl.update(id: String)
+
+###
+#  tags:
+#    - page
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /page/list                                  @controllers.cta.PageCtrl.getList(page: Int, numberPerPage: Int)
+
+###
+#  tags:
+#    - page
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /page/count                                  @controllers.cta.PageCtrl.count()
+
+###
+#  tags:
+#    - page
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /page/list/ids                                     @controllers.cta.PageCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - page
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /page                                           @controllers.cta.PageCtrl.removeByIds(ids: List[String])
+
+# courses
+
+###
+#  tags:
+#    - course
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new course
+###
+POST    /course                                           @controllers.cta.CourseCtrl.create
+
+###
+#  tags:
+#    - course
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify course
+#      schema:
+#        $ref: '#/definitions/models.daos.course.Course'
+###
+POST    /course/:id                                       @controllers.cta.CourseCtrl.update(id: String)
+
+###
+#  tags:
+#    - course
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /course/list                                  @controllers.cta.CourseCtrl.getList(page: Int, numberPerPage: Int)
+
+###
+#  tags:
+#    - course
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /course/count                                  @controllers.cta.CourseCtrl.count()
+
+###
+#  tags:
+#    - course
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /course/list/ids                                     @controllers.cta.CourseCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - course
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /course                                           @controllers.cta.CourseCtrl.removeByIds(ids: List[String])
+
+# modules
+
+###
+#  tags:
+#    - module
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new module
+###
+POST    /module                                           @controllers.cta.ModuleCtrl.create
+
+###
+#  tags:
+#    - module
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify module
+#      schema:
+#        $ref: '#/definitions/models.daos.module.Module'
+###
+POST    /module/:id                                       @controllers.cta.ModuleCtrl.update(id: String)
+
+###
+#  tags:
+#    - module
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /module/list                                  @controllers.cta.ModuleCtrl.getList(page: Int, numberPerPage: Int, grade: Option[Int], school_type: Option[String])
+
+###
+#  tags:
+#    - module
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /module/count                                  @controllers.cta.ModuleCtrl.count(grade: Option[Int])
+
+###
+#  tags:
+#    - module
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /module/maxnum                                  @controllers.cta.ModuleCtrl.getMaxNum(grade: Int)
+
+###
+#  tags:
+#    - module
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /module/progress                                  @controllers.cta.ModuleCtrl.getStudentProgress(user_id: String, module_id: Option[String], grade: Option[Int], school_type: Option[String])
+
+###
+#  tags:
+#    - module
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /module/list/ids                                     @controllers.cta.ModuleCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - module
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /module                                           @controllers.cta.ModuleCtrl.removeByIds(ids: List[String])
+
+# fields
+
+###
+#  tags:
+#    - field
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new module_form
+###
+POST    /field                                           @controllers.cta.FieldCtrl.create
+
+###
+#  tags:
+#    - field
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify module_form
+#      schema:
+#        $ref: '#/definitions/models.daos.field.Field'
+###
+POST    /field/:id                                       @controllers.cta.FieldCtrl.update(id: String)
+
+###
+#  tags:
+#    - field
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /field/list                                  @controllers.cta.FieldCtrl.getList(page: Int, numberPerPage: Int, parent_id: Option[String])
+
+###
+#  tags:
+#    - field
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /field/count                                  @controllers.cta.FieldCtrl.count(parent_id: Option[String])
+
+###
+#  tags:
+#    - field
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /field/list/ids                                     @controllers.cta.FieldCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - field
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /field                                           @controllers.cta.FieldCtrl.removeByIds(ids: List[String])
+
+# fieldlogs
+
+###
+#  tags:
+#    - fieldlog
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new module_form
+###
+POST    /fieldlog                                           @controllers.cta.FieldLogCtrl.create
+
+###
+#  tags:
+#    - fieldlog
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify module_form
+#      schema:
+#        $ref: '#/definitions/models.daos.fieldlog.FieldLog'
+###
+POST    /fieldlog/:id                                       @controllers.cta.FieldLogCtrl.update(id: String)
+
+###
+#  tags:
+#    - fieldlog
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /fieldlog/list                                  @controllers.cta.FieldLogCtrl.getList(page: Int, numberPerPage: Int, field_ids: Option[List[String]], user_ids: Option[List[String]], child_id: Option[String], child_type: Option[String])
+
+###
+#  tags:
+#    - fieldlog
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /fieldlog/count                                  @controllers.cta.FieldLogCtrl.count(field_ids: Option[List[String]], user_ids: Option[List[String]], child_id: Option[String], child_type: Option[String])
+
+###
+#  tags:
+#    - fieldlog
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /fieldlog/list/ids                                     @controllers.cta.FieldLogCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - fieldlog
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /fieldlog                                           @controllers.cta.FieldLogCtrl.removeByIds(ids: List[String])
+
+
+# moduleactivitys
+
+###
+#  tags:
+#    - moduleactivity
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new module_activity
+###
+POST    /moduleactivity                                           @controllers.cta.ModuleActivityCtrl.create
+
+###
+#  tags:
+#    - moduleactivity
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify module_activity
+#      schema:
+#        $ref: '#/definitions/models.daos.module.activity.ModuleActivity'
+###
+POST    /moduleactivity/:id                                       @controllers.cta.ModuleActivityCtrl.update(id: String)
+
+###
+#  tags:
+#    - moduleactivity
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+POST   /moduleactivity/documents/:module_activity_id                        @controllers.cta.ModuleActivityCtrl.uploadDocument(module_activity_id: String)
+
+###
+#  tags:
+#    - moduleactivity
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /moduleactivity/list                                  @controllers.cta.ModuleActivityCtrl.getList(page: Int, numberPerPage: Int, module_ids: Option[List[String]])
+
+###
+#  tags:
+#    - moduleactivity
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /moduleactivity/count                                  @controllers.cta.ModuleActivityCtrl.count(module_ids: Option[List[String]])
+
+###
+#  tags:
+#    - moduleactivity
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /moduleactivity/list/ids                                     @controllers.cta.ModuleActivityCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - moduleactivity
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /moduleactivity                                           @controllers.cta.ModuleActivityCtrl.removeByIds(ids: List[String])
+
+
+# explorationTypes
+
+###
+#  tags:
+#    - explorationType
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new explorationType
+###
+POST    /explorationtype                                           @controllers.cta.ExplorationTypeCtrl.create
+
+###
+#  tags:
+#    - explorationType
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify explorationType
+#      schema:
+#        $ref: '#/definitions/models.daos.explorationType.ExplorationType'
+###
+POST    /explorationtype/:id                                       @controllers.cta.ExplorationTypeCtrl.update(id: String)
+
+###
+#  tags:
+#    - explorationType
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /explorationtype/list                                  @controllers.cta.ExplorationTypeCtrl.getList(page: Int, numberPerPage: Int, partner_slug: Option[String], exclude_partner: Boolean ?= false)
+
+###
+#  tags:
+#    - explorationType
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /explorationtype/count                                  @controllers.cta.ExplorationTypeCtrl.count(partner_slug: Option[String])
+
+###
+#  tags:
+#    - explorationType
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /explorationtype/list/ids                                     @controllers.cta.ExplorationTypeCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - explorationType
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /explorationtype/list/restriction                                     @controllers.cta.ExplorationTypeCtrl.getListWithRestriction(classroom_id: String)
+
+###
+#  tags:
+#    - explorationType
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /explorationtype                                           @controllers.cta.ExplorationTypeCtrl.removeByIds(ids: List[String])
+
+# explorations
+
+###
+#  tags:
+#    - exploration
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new exploration
+###
+POST    /exploration                                           @controllers.cta.ExplorationCtrl.create
+
+###
+#  tags:
+#    - exploration
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify exploration
+#      schema:
+#        $ref: '#/definitions/models.daos.exploration.Exploration'
+###
+POST    /exploration/:id                                       @controllers.cta.ExplorationCtrl.update(id: String)
+
+###
+#  tags:
+#    - exploration
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /exploration/list                                  @controllers.cta.ExplorationCtrl.getList(page: Int, numberPerPage: Int, user_ids: Option[List[String]], exploration_type_ids: Option[List[String]])
+
+###
+#  tags:
+#    - exploration
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /exploration/count                                  @controllers.cta.ExplorationCtrl.count(user_ids: Option[List[String]], exploration_type_ids: Option[List[String]])
+
+###
+#  tags:
+#    - exploration
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /exploration/list/ids                                     @controllers.cta.ExplorationCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - exploration
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /exploration                                           @controllers.cta.ExplorationCtrl.removeByIds(ids: List[String])
+
+# data
+
+###
+#  tags:
+#    - data
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET /data/middle-school                                 @controllers.cta.DataCtrl.getMiddleSchoolData(from_date: Long, to_date: Long, school_ids: Option[List[String]], grades: Option[List[String]], classroom_ids: Option[List[String]])
+
+###
+#  tags:
+#    - data
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET /data/high-school                                 @controllers.cta.DataCtrl.getHighSchoolData(from_date: Long, to_date: Long, school_ids: Option[List[String]], grades: Option[List[String]], classroom_ids: Option[List[String]])
+
+###
+#  tags:
+#    - data
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET /data/collectivity                                 @controllers.cta.DataCtrl.getCollectivityData(from_date: Long, to_date: Long, school_ids: Option[List[String]], grades: Option[List[String]], classroom_ids: Option[List[String]])
+
+###
+#  tags:
+#    - data
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET /data/admin                                 @controllers.cta.DataCtrl.getAdminData(from_date: Long, to_date: Long, school_ids: Option[List[String]], grades: Option[List[String]], classroom_ids: Option[List[String]])
+
+###
+#  tags:
+#    - data
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET /data/stats                                 @controllers.cta.DataCtrl.getDataStats(school_ids: List[String], grade: Option[Int], classroom_id: Option[String])
+
+
+# settings
+
+###
+#  tags:
+#    - settings
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new settings
+#      schema:
+#        $ref: '#/definitions/models.daos.settings.Settings'
+###
+POST    /settings                                         @controllers.cta.SettingsCtrl.create
+
+###
+#  tags:
+#    - settings
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify an existing settings
+#      schema:
+#        $ref: '#/definitions/models.daos.settings.Settings'
+###
+POST    /settings/:id                                     @controllers.cta.SettingsCtrl.updateSettings(id: String)
+
+###
+#  tags:
+#    - settings
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /settings                                         @controllers.cta.SettingsCtrl.settingsList(page: Int ?= 1, numberByPage: Int ?= 25)
+
+###
+#  tags:
+#    - settings
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /settings/list/count                                 @controllers.cta.SettingsCtrl.count()
+
+###
+#  tags:
+#    - settings
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /settings/list/ids                                @controllers.cta.SettingsCtrl.getSettingsByIds(ids: List[String])
+
+###
+#  tags:
+#    - settings
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /settings/:id                                     @controllers.cta.SettingsCtrl.findSettingsById(id: String)
+
+###
+#  tags:
+#    - settings
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /settings                                         @controllers.cta.SettingsCtrl.removeByIds(ids: List[String])
+
+# OnisepFeedback
+
+###
+#  tags:
+#    - onisepFeedback
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new onisepFeedback
+#      schema:
+#        $ref: '#/definitions/models.daos.onisep.feedback.OnisepFeedback'
+###
+POST    /onisepfeedback                                           @controllers.cta.OnisepFeedbackCtrl.create
+
+###
+#  tags:
+#    - onisepFeedback
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify onisepFeedback
+#      schema:
+#        $ref: '#/definitions/models.daos.onisep.feedback.OnisepFeedback'
+###
+POST    /onisepfeedback/:id                                       @controllers.cta.OnisepFeedbackCtrl.update(id: String)
+
+###
+#  tags:
+#    - onisepFeedback
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /onisepfeedback/list                                  @controllers.cta.OnisepFeedbackCtrl.getList(page: Int, numberPerPage: Int, user_ids: Option[List[String]])
+
+###
+#  tags:
+#    - onisepFeedback
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /onisepfeedback/count                                  @controllers.cta.OnisepFeedbackCtrl.count(user_ids: Option[List[String]])
+
+###
+#  tags:
+#    - onisepFeedback
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /onisepfeedback/list/ids                                     @controllers.cta.OnisepFeedbackCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - onisepFeedback
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /onisepfeedback                                           @controllers.cta.OnisepFeedbackCtrl.removeByIds(ids: List[String])
+
+###
+#  tags:
+#    - onisepFeedback
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /onisepfeedback/uais                                           @controllers.cta.OnisepFeedbackCtrl.removeByCodeUais(code_uais: List[String], user_id: String)
+
+
+# leads
+
+###
+#  tags:
+#    - lead
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new training
+#      schema:
+#        $ref: '#/definitions/models.daos.lead.Lead'
+###
+POST    /lead                                           @controllers.cta.LeadCtrl.create
+
+###
+#  tags:
+#    - lead
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify training
+#      schema:
+#        $ref: '#/definitions/models.daos.lead.Lead'
+###
+POST    /lead/:id                                       @controllers.cta.LeadCtrl.update(id: String)
+
+###
+#  tags:
+#    - lead
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /lead/list                                  @controllers.cta.LeadCtrl.getList(page: Int, numberPerPage: Int, user_ids: Option[List[String]])
+
+###
+#  tags:
+#    - lead
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /lead/count                                  @controllers.cta.LeadCtrl.count(user_ids: Option[List[String]])
+
+###
+#  tags:
+#    - lead
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /lead/list/ids                                     @controllers.cta.LeadCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - lead
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /lead                                           @controllers.cta.LeadCtrl.removeByIds(ids: List[String])
+
+
+# restriction
+
+###
+#  tags:
+#    - restriction
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new restriction
+#      schema:
+#        $ref: '#/definitions/models.daos.restriction.Restriction'
+###
+POST    /restriction                                           @controllers.cta.RestrictionCtrl.create
+
+###
+#  tags:
+#    - restriction
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify restriction
+#      schema:
+#        $ref: '#/definitions/models.daos.restriction.Restriction'
+###
+POST    /restriction/:id                                       @controllers.cta.RestrictionCtrl.update(id: String)
+
+###
+#  tags:
+#    - restriction
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /restriction/list                                  @controllers.cta.RestrictionCtrl.getList(page: Int, numberPerPage: Int, exploration_type_id: Option[String])
+
+###
+#  tags:
+#    - restriction
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /restriction/count                                  @controllers.cta.RestrictionCtrl.count(exploration_type_id: Option[String])
+
+###
+#  tags:
+#    - restriction
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /restriction                                           @controllers.cta.RestrictionCtrl.removeByIds(ids: List[String])
+
+
+# association
+
+###
+#  tags:
+#    - association
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new association
+#      schema:
+#        $ref: '#/definitions/models.daos.association.Association'
+###
+POST    /association                                           @controllers.cta.AssociationCtrl.create
+
+###
+#  tags:
+#    - association
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify association
+#      schema:
+#        $ref: '#/definitions/models.daos.association.Association'
+###
+POST    /association/:id                                       @controllers.cta.AssociationCtrl.update(id: String)
+
+###
+#  tags:
+#    - association
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+POST   /association/logos/:association_id                        @controllers.cta.AssociationCtrl.uploadLogo(association_id: String)
+
+###
+#  tags:
+#    - association
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /association/list                                  @controllers.cta.AssociationCtrl.getList(page: Int, numberPerPage: Int, partner_slug: Option[String])
+
+###
+#  tags:
+#    - association
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /association/count                                  @controllers.cta.AssociationCtrl.count(partner_slug: Option[String])
+
+
+###
+#  tags:
+#    - association
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /association/list/ids                                     @controllers.cta.AssociationCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - association
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /association                                           @controllers.cta.AssociationCtrl.removeByIds(ids: List[String])
+
+
+# ONISEP API
+
+###
+#  tags:
+#    - onisep
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /onisep/schools                                @controllers.cta.OnisepApiCtrl.getSchools(size: Int, query: Option[String])
+
+# Student specifics
+
+###
+#  tags:
+#    - student
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /student/next-actions                                @controllers.cta.StudentCtrl.getNextActions(user_id: String, grade: Option[Int], school_type: Option[String])
+
+###
+#  tags:
+#    - student
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /student/results                                @controllers.cta.StudentCtrl.getResults(user_id: String)
+
+###
+#  tags:
+#    - student
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET    /student/count                                  @controllers.cta.StudentCtrl.countStudents(school_ids: List[String], grade: Option[Int], classroom_id: Option[String])
+
+###
+#  tags:
+#    - student
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET    /student/list                                  @controllers.cta.StudentCtrl.getStudents(school_ids: List[String], grade: Option[Int], classroom_id: Option[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - student
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET    /student/search/:fullName                                  @controllers.cta.StudentCtrl.searchByFullName(school_ids: List[String], grade: Option[Int], classroom_id: Option[String], fullName: String)
+
+
+###
+#  tags:
+#    - loginLog
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify loginLog
+#      schema:
+#        $ref: '#/definitions/models.daos.loginLog.LoginLog'
+###
+POST    /loginLog                                       @controllers.cta.LoginLogCtrl.create()
+
+###
+#  tags:
+#    - loginLog
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /loginLog/list                                  @controllers.cta.LoginLogCtrl.getList(page: Int, numberPerPage: Int, user_ids: Option[List[String]])
+
+###
+#  tags:
+#    - loginLog
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /loginLog/count                                  @controllers.cta.LoginLogCtrl.count(user_ids: Option[List[String]])
+
+###
+#  tags:
+#    - loginLog
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /loginLog                                           @controllers.cta.LoginLogCtrl.removeByUsersIds(ids: List[String])
+
+###
+#  tags:
+#    - event
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify event
+#      schema:
+#        $ref: '#/definitions/models.daos.event.Event'
+###
+POST    /event                                       @controllers.cta.EventCtrl.create()
+
+###
+#  tags:
+#    - event
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify event
+#      schema:
+#        $ref: '#/definitions/models.daos.event.Event'
+###
+POST    /event/:id                                    @controllers.cta.EventCtrl.update(id: String)
+
+###
+#  tags:
+#    - event
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /event/list                                  @controllers.cta.EventCtrl.getList(page: Int, numberPerPage: Int, kind: Option[String], ids: Option[List[String]])
+
+###
+#  tags:
+#    - event
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /event/list/ids                              @controllers.cta.EventCtrl.getByIds(ids: List[String], page: Option[Int], numberPerPage: Option[Int])
+
+###
+#  tags:
+#    - event
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /event/list/users                                @controllers.cta.EventCtrl.getByUserIds(user_ids: List[String], kind: String)
+
+###
+#  tags:
+#    - event
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /event/count                                  @controllers.cta.EventCtrl.count(kind: Option[String], ids: Option[List[String]])
+
+###
+#  tags:
+#    - event
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /event                                           @controllers.cta.EventCtrl.removeByIds(ids: List[String])
+
+###
+#  tags:
+#    - booking
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify booking
+#      schema:
+#        $ref: '#/definitions/models.daos.booking.Booking'
+###
+POST    /booking                                       @controllers.cta.BookingCtrl.create()
+
+###
+#  tags:
+#    - booking
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify booking
+#      schema:
+#        $ref: '#/definitions/models.daos.booking.Booking'
+###
+POST    /booking/:id                                    @controllers.cta.BookingCtrl.update(id: String)
+
+###
+#  tags:
+#    - booking
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /booking/list                                  @controllers.cta.BookingCtrl.getList(page: Int, numberPerPage: Int, user_ids: Option[List[String]], parent_ids: Option[List[String]], status: Option[String])
+
+###
+#  tags:
+#    - booking
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /booking/count                                  @controllers.cta.BookingCtrl.count(user_ids: Option[List[String]], parent_ids: Option[List[String]], status: Option[String])
+
+###
+#  tags:
+#    - booking
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /booking                                           @controllers.cta.BookingCtrl.removeByIds(ids: List[String])
+
+###
+#  tags:
+#    - booking
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE  /booking/parents                                           @controllers.cta.BookingCtrl.removeByParentIds(parent_ids: List[String])
+
+
+# chat services
+
+GET     /basic/watcher/:eventName/:username/:token        @controllers.BasicActorCtrl.send(eventName: String, username: String, token: String)
+#GET    /room/video/:eventRoom/:username                  @controllers.VideoStreamerCtrl.chat(eventRoom: String, username: String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assetsv/*file                                     controllers.Assets.versioned(path="/public", file: Asset)
+GET     /assets/*file                                      controllers.Assets.at(path="/public", file)

@@ -1,0 +1,47 @@
+// .appear {
+//   opacity: 0;
+//   transition: 0.5s 0s ease;
+//   transform-origin: left center;
+//   transform: translateY(30px);
+// }
+
+// .appear--right {
+//   opacity: 0;
+//   transition: 0.3s 0.2s ease;
+//   transform: translateX(50%);
+//   transform-origin: left center;
+// }
+
+// .appear--bg {
+//   opacity: 0;
+//   transition: 0.3s 0s ease-out;
+// }
+
+// .onView {
+//   span {
+//     opacity: 1;
+//     transform: translateY(0);
+//     transition-duration: 0.3s;
+//     transition-timing-function: ease;
+//   }
+
+//   .appear {
+//     opacity: 1;
+//     transform: translateY(0);
+//   }
+
+//   .appear--right {
+//     opacity: 1;
+//     transform: translateX(0);
+//   }
+
+//   @for $i from 1 to 5 {
+//     .appear:nth-child(#{$i}) {
+//       transition-delay: $i * 0.1s;
+//     }
+//   }
+// }
+
+// .onView.appear--bg {
+//   opacity: 1;
+// }

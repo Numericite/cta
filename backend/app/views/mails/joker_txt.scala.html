@@ -1,0 +1,11 @@
+@(firstName: String, activity_id: String, token_id: String, student_firstName: String)(implicit messages: Messages)
+
+@Messages("web.mail.joker.hello", firstName)
+
+@Messages("web.mail.joker.content", student_firstName)
+
+@Messages("web.mail.siteUrl")@Messages("web.mail.joker.route", activity_id, token_id)
+
+@Messages("web.mail.postlink")
+
+@Messages("web.mail.sign")

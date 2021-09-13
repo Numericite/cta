@@ -1,0 +1,10 @@
+.text-content {
+  h2 {
+    font-family: 'Proza Libre';
+    @apply text-blue text-6xl font-bold pr-6 leading-tight border-b-2 border-blue-lightest border-solid pb-2 mt-4;
+  }
+
+  h3 {
+    @apply text-blue font-extrabold text-2xl
+  }
+}

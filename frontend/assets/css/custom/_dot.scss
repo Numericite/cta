@@ -1,0 +1,18 @@
+.dot {
+  border-radius: 50%;
+  width: 4px;
+  height: 4px;
+}
+.big-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.dot-out {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}

@@ -1,0 +1,8 @@
+.hoverCard {
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 15px 25px 0 rgba(0, 0, 0, 0.10);
+    transform: translateY(-5px);
+  }
+}

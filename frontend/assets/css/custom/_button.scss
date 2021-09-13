@@ -1,0 +1,79 @@
+.button {
+  @apply border-solid border rounded-full px-8 py-4 text-white font-bold uppercase text-lg;
+  width: auto;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    box-shadow: 0 7px 15px 0 rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    @apply bg-orange border-orange;
+  }
+}
+
+@screen xsm {
+  .button {
+    @apply text-lg;
+  }
+}
+
+.button--white {
+  @apply border-white bg-white text-blue;
+
+  &:hover:not(:disabled) {
+    @apply text-white;
+  }
+}
+
+.button--blue {
+  @apply border-blue bg-blue;
+
+  &:hover:not(:disabled) {
+    @apply bg-blue border-blue;
+  }
+
+  &:disabled {
+    @apply border-blue-lighter bg-blue-lighter;
+
+    &:hover {
+      @apply bg-blue-lighter border-blue-lighter;
+      cursor: default;
+    }
+  }
+}
+.button-ms {
+  @apply text-white rounded-lg py-6 px-8 font-semibold;
+  outline: 0!important;
+  letter-spacing: 0.1em;
+  &:hover {
+    @apply opacity-75;
+  }
+  &:focus {
+    @apply outline-none;
+  }
+}
+.button-outline-ms {
+  @apply border-1 border-solid rounded-lg py-6 px-8 font-semibold;
+  letter-spacing: 0.1em;
+  &:hover {
+    @apply opacity-75;
+  }
+  &:focus {
+    @apply outline-none;
+  }
+}
+.button--orange {
+  @apply bg-orange border-orange;
+
+  &:disabled {
+    @apply border-blue-lighter bg-blue-lighter;
+
+    &:hover {
+      @apply bg-blue-lighter border-blue-lighter;
+      cursor: default;
+    }
+  }
+}
+
+.button--shadow {
+  box-shadow: 0 8px 19px 0 rgba(40, 21, 134, 0.2);
+}

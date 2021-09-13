@@ -1,0 +1,69 @@
+error.email = Valid email required
+error.required = This field is required
+invalid.credentials = Invalid credentials!
+access.denied = Access denied!
+user.exists = There already exists a user with this email!
+could.not.authenticate = Could not authenticate with social provider! Please try again!
+
+home.title = Silhouette - Home
+sign.up.title = Silhouette - Sign Up
+sign.in.title = Silhouette - Sign In
+
+toggle.navigation = Toggle navigation
+welcome.signed.in = Welcome, you are now signed in!
+
+sign.up.account = Sign up for a new account
+sign.in.credentials = Sign in with your credentials
+
+error = Error!
+home = Home
+first.name = First name
+last.name = Last name
+full.name = Full name
+email = Email
+password = Password
+sign.up = Sign up
+sign.in = Sign in
+sign.out = Sign out
+sign.in.now = Sign in now
+sign.up.now = Sign up now
+already.a.member = Already a member?
+not.a.member = Not a member?
+
+remember.me = Remember my login on this computer
+or.use.social = Or use your existing account on one of the following services to sign in:
+
+google = Google
+facebook = Facebook
+twitter = Twitter
+vk = VK
+xing = Xing
+yahoo = Yahoo
+
+
+
+
+web.mail.welcome.subject=Bienvenue sur la plateforme
+web.mail.welcome.hello=Bienvenue {0}!
+web.mail.welcome.prelink=Connetez-vous dès maintenant sur la plateforme grâce à vos identifiants.
+web.mail.welcome.postlink= Nous vous souhaitons une bonne et agreable journée.
+
+web.mail.forgotpwd.subject=Reinitialiser votre mot de passe.
+web.mail.forgotpwd.prelink=Vous avez fait une demande de réinitialisation de mot de passe. Si vous êtes bien à l''origine de cette requête veuillez suivre ce lien:
+web.mail.forgotpwd.postlink=Veuillez ignorer ce mail si vous n''êtes pas concerné
+
+
+web.mail.validation.subject=Validation inscription {0}.
+web.mail.validation.prelink=Vous avez fait une demande d''inscription sur la plateforme {0}. Si vous êtes bien à l''origine de cette requête veuillez suivre ce lien:
+web.mail.ignore.postlink=Veuillez ignorer ce mail si vous n''êtes pas concerné
+web.mail.validation.link=Validation
+
+web.mail.activated.subject=Bienvenue sur la plateforme
+web.mail.activated.hello=Bonjour {0} {1},
+web.mail.activated.prelink=Votre demande d''inscription sur la plateforme a été acceptée par un administrateur.
+
+web.mail.greetings=Bonjour {0},
+
+web.mail.sign=E-learning
+web.mail.siteUrl=http://www.e-learning.cymit.fr
+web.mail.validate.account.link=/app/account/validate/

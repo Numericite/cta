@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="351" height="262" viewBox="0 0 351 262">
+    <g fill="none" fill-rule="evenodd">
+        <path stroke="#A2ACE3" stroke-linecap="round" stroke-width="2" d="M111.995 28.479a8 8 0 1 1-16.001 0 8 8 0 0 1 16 0z"/>
+        <g stroke="#A2ACE3" stroke-linecap="round" stroke-width="2">
+            <path d="M327.995 205.479h13M333.407 198.479l2.136 14"/>
+        </g>
+        <g stroke="#A2ACE3" stroke-linecap="round" stroke-width="2">
+            <path d="M7.851 95.172l9.994.354M1.073 76.776l18.544 8.951M19.55 69.97l6.285 9.028"/>
+        </g>
+        <g stroke="#A2ACE3" stroke-linecap="round" stroke-width="2">
+            <path d="M254.47 23.602l.792 9.968M271.972 14.766l-6.773 19.445M280.845 32.344l-8.25 7.275"/>
+        </g>
+        <path stroke="#A2ACE3" stroke-linecap="round" stroke-width="2" d="M326.995 124.479l23-12"/>
+        <text fill="#FF8F5E" font-family="ProzaLibre-Bold, Proza Libre" font-size="16" font-weight="bold" transform="rotate(45 281.243 262.207)">
+            <tspan x="269" y="269">?</tspan>
+        </text>
+        <text fill="#FFC600" font-family="ProzaLibre-Bold, Proza Libre" font-size="22" font-weight="bold" transform="rotate(41 340.524 55.337)">
+            <tspan x="326" y="64">?</tspan>
+        </text>
+        <text fill="#1DD4B6" font-family="ProzaLibre-Bold, Proza Libre" font-size="22" font-weight="bold" transform="rotate(-45 24.257 10.793)">
+            <tspan x="25" y="22">?</tspan>
+        </text>
+    </g>
+</svg>

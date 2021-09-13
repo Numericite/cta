@@ -1,0 +1,396 @@
+<template>
+  <div class="activity w-screen xl:min-h-screen flex justify-end items-start sm:pb-16">
+
+    <!-- Left part -->
+    <div :class="[step > 0 ? 'bg-blue' : 'bg-home']"
+         class="activity__left fixed pin-l xl:pin-t pin-b xl:h-screen xl:w-2/5 w-full flex justify-center items-center z-10">
+
+      <!-- Home -->
+      <picture v-if="step == 0"
+               class="pr-3 sm:hidden w-full">
+        <img src="~/assets/img/activity-3.png"
+             alt="Activité numéro 3">
+      </picture>
+      <!-- End Home -->
+
+      <!-- Step 1 -->
+      <div v-else
+           class="relative w-full xl:h-full h-16 flex items-center justify-center">
+        <picture class="absolute pin-t pin-l sm:w-1/3">
+          <img src="~/assets/img/centres-dinterets/bg-top-left.svg"
+               alt="background intelligences multiples">
+        </picture>
+
+        <picture v-if="step != 0"
+                 class="w-full flex items-center justify-center sm:h-10 sm:w-1/5 sm:bg-blue sm:rounded-full brain sm:relative">
+          <svg xmlns="http://www.w3.org/2000/svg"
+               xmlns:xlink="http://www.w3.org/1999/xlink"
+               class="activity_illustration"
+               height="486"
+               viewBox="0 0 418 486">
+            <defs>
+              <path id="a"
+                    d="M0 .982h230.893V127.58H0z" />
+              <path id="c"
+                    d="M41.428 7.588C31.022 12.997 20.38 21.095 17.99 38.044 16.655 53.278-1.265 51.707.071 36.47 3.278 20.496 19.264 2.934 39.37.183c8.221-1.086 11.49 2.814 2.059 7.405m-12.31 83.037c-13.492-81.867 80.947-125.05 141.209-49.48 59.362-75.57 154.701-32.387 141.21 49.48-9.894 57.577-65.658 114.255-141.21 160.136C94.775 204.88 38.111 148.202 29.117 90.625" />
+            </defs>
+            <g fill="none"
+               fill-rule="evenodd">
+              <path fill="#281586"
+                    d="M290.953 440.838c-10.314 4.012-21.123 4.988-33.041 2.99-11.613-1.948-24.45-4.53-40.05-9.962 22.817 3.429 47.092 4.876 57.77.58.083.068.16.14.244.21.643-.18 1.284-.337 1.93-.562 4.133-1.44 8.98-3.4 13.596-3.574 7.65-1.076 17.566 1.32 14.976 11.106-.27 1.017-.956 1.474-1.719 1.54a11.733 11.733 0 0 0-3.952-2.52c-3.048-1.17-6.422-1.103-9.754.192" />
+              <path fill="#281586"
+                    d="M199.075 426.442c5.73-.427 12.077-1.161 15.026-.854.048-.235 22.285-1.235 29.91 4.559.315.24.535.558.7.902 19.686-4.163 22.203-4 27.71-.8.24.11.557.455.89.899-12.03 4.254-45.207 1.4-74.004-4.6-.073-.036-.153-.071-.232-.106" />
+              <g transform="scale(-1 1) rotate(-21 1022.965 1053.403)">
+                <mask id="b"
+                      fill="#fff">
+                  <use xlink:href="#a" />
+                </mask>
+                <path fill="#281586"
+                      d="M230.326 90.652c-23.606-53.118-14.742-60.585-61.375-72.299-6.188-1.554-47.765-15.335-54.82-16.794a27.305 27.305 0 0 0-5.519-.577c-12.41 0-19.478 9.074-8.005 13.502 12.023 4.642 13.066 6.864 21.08 8.933 3.522.91 17.71 3.197 24.177 6.708-20.762 3.08-37.497 4.308-51.83 4.308-19.51 0-34.56-2.276-49.203-5.247-11.676-2.37-22.258-7.054-31.644-15.579-2.062-1.872-4.324-2.649-6.389-2.649-5.626 0-9.746 5.786-4.105 10.91 1.37 1.243 4.902 4.706 5.445 5.288C37.3 58.427 75.507 62.62 128.182 69.966c1.312.182 11.132.89 14.632.89.552 0 .947-.019 1.127-.058 23.788 7.37 36.074 25.411 51.417 56.237.187.371.582.545 1.152.545 6.869 0 39.025-25.205 33.816-36.928"
+                      mask="url(#b)" />
+              </g>
+              <path fill="#106"
+                    fill-rule="nonzero"
+                    d="M61.82 438.77c-1.664 22.709 4.673 38.418 19.012 47.127 6.131-15.604-.206-31.313-19.012-47.127z" />
+              <g>
+                <g stroke-linecap="round">
+                  <path stroke="#281586"
+                        stroke-width="6"
+                        d="M196.832 318.495c-.953 34.73 2.402 52.069 9.609 51.268 7.206-.801 2.802-66.583 2.802-150.2 0-83.615-6.005-148.195 3.603-151 6.406-1.868 9.426 12.764 9.06 43.899" />
+                  <path v-if="step >= 4"
+                        :stroke="step >= 5 ? '#1DD4B6' : '#A2ACE3'"
+                        stroke-width="2"
+                        d="M196.832 318.495c-.953 34.73 2.402 52.069 9.609 51.268 7.206-.801 2.802-66.583 2.802-150.2 0-83.615-6.005-148.195 3.603-151 6.406-1.868 9.426 12.764 9.06 43.899" />
+                  <path stroke="#281586"
+                        stroke-width="6"
+                        d="M103.825 232.795c-11.692 28.588-13.001 51.762-1.13 61.787 21.868 18.466 80.18-14.67 130.241-74.011C283 161.23 305.02 99.36 283.988 79.69c-16.762-15.677-46.64-4.518-89.635 33.477" />
+                  <path v-if="step >= 3"
+                        :stroke="step >= 5 ? '#FF9C9C' : '#A2ACE3'"
+                        stroke-width="2"
+                        d="M103.825 232.795c-11.692 28.588-13.001 51.762-1.13 61.787 21.868 18.466 80.18-14.67 130.241-74.011C283 161.23 305.02 99.36 283.988 79.69c-16.762-15.677-46.64-4.518-89.635 33.477" />
+                  <path stroke="#281586"
+                        stroke-width="6"
+                        d="M311.117 230.09c13.665 30.918 15.876 56.28 3.304 66.895-21.868 18.465-80.179-14.67-130.241-74.01-50.063-59.341-72.92-122.416-51.052-140.881 17.767-15.002 44.184-7.78 86.095 31.723" />
+                  <path v-if="step >= 2"
+                        :stroke="step >= 5 ? '#FFC600' : '#A2ACE3'"
+                        stroke-width="2"
+                        d="M311.117 230.09c13.665 30.918 15.876 56.28 3.304 66.895-21.868 18.465-80.179-14.67-130.241-74.01-50.063-59.341-72.92-122.416-51.052-140.881 17.767-15.002 44.184-7.78 86.095 31.723" />
+                </g>
+                <g transform="translate(36 87)">
+                  <mask id="d"
+                        fill="#fff">
+                    <use xlink:href="#c" />
+                  </mask>
+                  <use fill="#281586"
+                       xlink:href="#c" />
+                  <g stroke-linecap="round"
+                     mask="url(#d)">
+                    <path stroke="#140963"
+                          stroke-width="6"
+                          d="M170.44 282.763c7.207-.801 2.803-66.583 2.803-150.2 0-83.615-6.005-148.195 3.603-151" />
+                    <path v-if="step >= 4"
+                          :stroke="step >= 5 ? '#1DD4B6' : '#A2ACE3'"
+                          stroke-width="2"
+                          d="M170.44 282.763c7.207-.801 2.803-66.583 2.803-150.2 0-83.615-6.005-148.195 3.603-151" />
+                    <path stroke="#140963"
+                          stroke-width="6"
+                          d="M66.696 207.582c21.867 18.466 80.178-14.67 130.24-74.011C247 74.23 269.856 11.156 247.988-7.31" />
+                    <path v-if="step >= 3"
+                          :stroke="step >= 5 ? '#FF9C9C' : '#A2ACE3'"
+                          stroke-width="2"
+                          d="M66.696 207.582c21.867 18.466 80.178-14.67 130.24-74.011C247 74.23 269.856 11.156 247.988-7.31" />
+                    <path stroke="#140963"
+                          stroke-width="6"
+                          d="M278.421 209.985c-21.868 18.465-80.179-14.67-130.241-74.01C98.117 76.633 75.26 13.558 97.128-4.907" />
+                    <path v-if="step >= 2"
+                          :stroke="step >= 5 ? '#FFC600' : '#A2ACE3'"
+                          stroke-width="2"
+                          d="M278.421 209.985c-21.868 18.465-80.179-14.67-130.241-74.01C98.117 76.633 75.26 13.558 97.128-4.907" />
+                  </g>
+                </g>
+              </g>
+              <g transform="translate(163 171)">
+                <path fill="#281586"
+                      d="M41 79.99C19.5 79.99 2.01 62.5 2.01 41 2.01 19.5 19.5 2.01 41 2.01 62.5 2.01 79.99 19.5 79.99 41c0 21.5-17.49 38.99-38.99 38.99" />
+                <path fill="#140963"
+                      d="M41 0C18.392 0 0 18.392 0 41s18.392 41 41 41c22.607 0 41-18.392 41-41S63.607 0 41 0m0 4.02c20.424 0 36.98 16.556 36.98 36.98 0 20.424-16.556 36.98-36.98 36.98C20.576 77.98 4.02 61.424 4.02 41 4.02 20.576 20.576 4.02 41 4.02" />
+                <circle v-if="step >= 6"
+                        cx="41"
+                        cy="41"
+                        r="39"
+                        fill-rule="nonzero"
+                        stroke="#FFC600"
+                        stroke-width="2" />
+                <path fill="#281586"
+                      d="M41.402 67.127c-14.185 0-25.726-11.54-25.726-25.725 0-14.185 11.54-25.726 25.726-25.726 14.185 0 25.725 11.54 25.725 25.726 0 14.185-11.54 25.725-25.725 25.725" />
+                <path fill="#140963"
+                      d="M41.402 13.667c-15.293 0-27.735 12.442-27.735 27.735s12.442 27.735 27.735 27.735 27.735-12.442 27.735-27.735-12.442-27.735-27.735-27.735m0 4.02c13.097 0 23.716 10.617 23.716 23.715 0 13.097-10.619 23.716-23.716 23.716-13.098 0-23.716-10.619-23.716-23.716 0-13.098 10.618-23.716 23.716-23.716" />
+                <circle v-if="step >= 7"
+                        cx="41.5"
+                        cy="41.5"
+                        r="25.5"
+                        fill-rule="nonzero"
+                        stroke="#FF9C9C"
+                        stroke-width="2" />
+                <path fill="#281586"
+                      d="M41.804 54.265c-6.871 0-12.46-5.59-12.46-12.461s5.589-12.46 12.46-12.46 12.46 5.589 12.46 12.46-5.589 12.46-12.46 12.46" />
+                <path fill="#140963"
+                      d="M41.804 27.333c-7.979 0-14.47 6.492-14.47 14.47 0 7.98 6.491 14.472 14.47 14.472 7.979 0 14.47-6.492 14.47-14.471s-6.491-14.47-14.47-14.47m0 4.019c5.772 0 10.45 4.679 10.45 10.45 0 5.773-4.678 10.452-10.45 10.452-5.772 0-10.451-4.679-10.451-10.451s4.679-10.451 10.45-10.451" />
+                <circle v-if="step >= 8"
+                        cx="42"
+                        cy="42"
+                        r="12"
+                        fill-rule="nonzero"
+                        stroke="#1DD4B6"
+                        stroke-width="2" />
+              </g>
+              <g v-if="step >= 5"
+                 stroke-width="2">
+                <path stroke="#A2ACE3"
+                      stroke-linecap="round"
+                      d="M178 14a8 8 0 1 1-16 0 8 8 0 0 1 16 0z" />
+                <path stroke="#FFC600"
+                      stroke-linecap="round"
+                      d="M156 343.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 1 1 11 0z" />
+                <g stroke="#A2ACE3"
+                   stroke-linecap="round">
+                  <path d="M318.995 321.195h13M324.407 314.195l2.136 14" />
+                </g>
+                <g stroke="#1DD4B6"
+                   stroke-linecap="round">
+                  <path d="M69.851 78.172l9.994.354M63.073 59.776l18.544 8.951M81.55 52.97l6.285 9.028" />
+                </g>
+                <path stroke="#FF9C9C"
+                      d="M14.963 197.176L2 191.889 7.664 178l12.964 5.287z" />
+                <g stroke="#A2ACE3"
+                   stroke-linecap="round">
+                  <path d="M316.47 56.602l.792 9.969M333.972 47.766l-6.773 19.445M342.845 65.344l-8.25 7.275" />
+                </g>
+                <g stroke-linecap="round">
+                  <path stroke="#1DD4B6"
+                        d="M216.994 1.479v39" />
+                  <path stroke="#A2ACE3"
+                        d="M235.5 33.284v22" />
+                </g>
+                <g stroke-linecap="round">
+                  <path stroke="#A2ACE3"
+                        d="M379.995 177.479l23-12" />
+                  <path stroke="#FFC600"
+                        d="M398.995 177.479l18-10" />
+                </g>
+              </g>
+            </g>
+          </svg>
+
+        </picture>
+
+        <picture class="absolute pin-b pin-r brainBgBottom">
+          <img src="~/assets/img/centres-dinterets/bg-bottom-right.svg"
+               alt="background intelligences multiples">
+        </picture>
+      </div>
+      <!-- End Step 1 -->
+
+    </div>
+    <!-- End Left part -->
+
+    <!-- Close -->
+    <nuxt-link to="/dashboard/student/domaines/introspection"
+               class="close z-50 w-12 h-12 bg-orange cursor-pointer fixed pin-t pin-r flex justify-center items-center">
+      <svg version="1.1"
+           xmlns="http://www.w3.org/2000/svg"
+           xmlns:xlink="http://www.w3.org/1999/xlink"
+           width="30"
+           height="30"
+           viewBox="0 0 20 20">
+        <path fill="#ffffff"
+              d="M10.707 10.5l5.646-5.646c0.195-0.195 0.195-0.512 0-0.707s-0.512-0.195-0.707 0l-5.646 5.646-5.646-5.646c-0.195-0.195-0.512-0.195-0.707 0s-0.195 0.512 0 0.707l5.646 5.646-5.646 5.646c-0.195 0.195-0.195 0.512 0 0.707 0.098 0.098 0.226 0.146 0.354 0.146s0.256-0.049 0.354-0.146l5.646-5.646 5.646 5.646c0.098 0.098 0.226 0.146 0.354 0.146s0.256-0.049 0.354-0.146c0.195-0.195 0.195-0.512 0-0.707l-5.646-5.646z" />
+      </svg>
+    </nuxt-link>
+    <!-- End Close -->
+
+    <nuxt-child :centres="centres"
+                :results="results"
+                :activityLogs="activityLogs"
+                @createResults="createResults"
+                @startActivity="startActivity"
+                @stopActivity="stopActivity"
+                @setStep="setStep"
+                @sendResults="getResults"
+                @setEndResults="getEndResults"
+                @setActivityLogs="setActivityLogs"
+                @createLogs="createLogs" />
+
+  </div>
+</template>
+
+<script>
+import DashboardPerimeter from '~/authorizations/DashboardPerimeter'
+import _ from 'lodash'
+
+export default {
+  name: 'CentresDinterets',
+  layout: 'activity',
+  routePerimeter: DashboardPerimeter,
+  routePerimeterAction: 'accessHighSchoolStudentDashboard',
+  async asyncData( { app, route, store, error } ) {
+    try {
+      const chapters = store.state.auth.user.course.chapters
+      let domain = _.find(chapters, { slug: 'activity-area' })
+      let introspection = _.find(domain.children, { slug: 'introspection' })
+
+      if(!_.some(introspection.activities, {'id': '3fb60ba1-b67a-4186-a694-70e5c3bf4d39'})) {
+        return error({ statusCode: 404, message: 'Post not found' })
+      }
+
+      let response
+      const version_id = _.get(_.find(introspection.activities, {id: '3fb60ba1-b67a-4186-a694-70e5c3bf4d39'}), 'version_id', null)
+
+      if (version_id) {
+        response = await app.$api.activities.getVersionsByIds([version_id])
+      } else {
+        response = await app.$api.activities.getVersions({
+          parent_ids: ['3fb60ba1-b67a-4186-a694-70e5c3bf4d39'],
+          isDefault: true
+        })
+      }
+      const version = response.data[0] || {}
+
+      response = await app.$api.activities.getSelections({version_ids: [version.id]})
+
+      const centres = response.data
+
+      const selections_ids = centres.map(selection => selection.id)
+
+      response = await app.$api.activities.getChoices(selections_ids)
+      const actions = response.data
+      actions.forEach(function(action) {
+        action.value = false
+      })
+
+      centres.forEach(function(centre) {
+        centre.like = false
+        centre.displayDescription = centre.description.replace(/(?:\r\n|\r|\n)/g, '<br>')
+        centre.actions = actions.filter(function(action) {
+          return action.selection_id === centre.id
+        })
+      })
+
+      response = await app.$api.activities.getUserLogs(app.store.state.auth.user.userID, '3fb60ba1-b67a-4186-a694-70e5c3bf4d39')
+      const activityLogs = response.data[0]
+
+      if (activityLogs) {
+        return { centres, actions, activityLogs }
+      } else {
+        return { centres, actions }
+      }
+    } catch ( e ) {
+      return 'error'
+    }
+  },
+  data() {
+    return {
+      step: 0,
+      results: null,
+      activityLogs: {
+        status_name: 'open',
+        activity_id: '3fb60ba1-b67a-4186-a694-70e5c3bf4d39',
+        config: {}
+      },
+      endResults: null
+    }
+  },
+  methods: {
+    startActivity: function() {
+      this.step = 1
+      this.$router.push( 'centres-dinterets/etape-1' )
+    },
+    stopActivity: function() {
+      this.step = 0
+    },
+    setStep: function( step ) {
+      this.step = step
+    },
+    getResults: function( results ) {
+      this.results = results
+    },
+    getEndResults: function( results ) {
+      this.endResults = results
+    },
+    setActivityLogs: function ( activityLogs ) {
+      this.activityLogs = activityLogs
+    },
+    createLogs: async function (callback) {
+      //SENDING LOGS
+      this.activityLogs.user_id = this.$store.state.auth.user.userID
+      await this.$api.activities.createLog(this.activityLogs)
+      callback()
+    },
+    createResults: function () {
+      //SENDING RESULTS
+      //this.$api.activities.createResults(this.$store.state.auth.user.userID, this.endResults)
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.activity {
+
+  .activity__left {
+    @screen xl {
+      width: 30vw;
+    }
+
+    @screen xxl {
+      width: 35vw;
+    }
+
+    .activity_illustration {
+      max-width: 90%;
+
+      @screen sm {
+        height: 6em;
+      }
+    }
+
+    .brain {
+      @screen sm {
+        width: 7rem;
+        height: 7rem;
+        transform: translateY(-1rem);
+      }
+    }
+    .brainColor {
+      @screen xl {
+        transform: translate(40px, -80px);
+      }
+      @screen sm {
+        width: 47%;
+        height: auto;
+        transform: translate(5px, -13px);
+      }
+    }
+    .brainBgBottom {
+      @screen sm {
+        transform: translateX(20%);
+        height: 60%;
+      }
+    }
+  }
+
+  .activity__right {
+    @screen xl {
+      width: 70vw;
+    }
+
+    @screen xxl {
+      width: 65vw;
+    }
+  }
+
+  .bg-home {
+    background: #ffece4;
+  }
+}
+</style>

@@ -1,0 +1,3 @@
+[submodule "modules/mercure"]
+	path = modules/mercure
+	url = https://bitbucket.org/cym-it/mercure-backend.git

@@ -1,0 +1,3 @@
+web.mail.siteUrl=http://cta-preprod.numericite.fr
+web.mail.dashboardUrl=http://cta-preprod.numericite.fr/ctadashboard
+web.mail.downloadUrl=http://cta-preprod.numericite.fr/api/download

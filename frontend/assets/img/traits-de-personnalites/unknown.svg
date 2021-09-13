@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="67" height="67" viewBox="0 0 67 67">
+    <g fill="none" fill-rule="evenodd">
+        <circle cx="33.5" cy="33.5" r="33.5" fill="#E9EFFF" fill-rule="nonzero"/>
+        <g fill="#FFF" font-family="OpenSans-Bold, Open Sans" font-weight="bold">
+            <text font-size="36" transform="translate(8 7)">
+                <tspan x="17" y="38">?</tspan>
+            </text>
+            <text font-size="18" transform="rotate(40 33.544 45.575)">
+                <tspan x="34.661" y="38.085">?</tspan>
+            </text>
+            <text font-size="22" transform="rotate(-22 33.287 11.66)">
+                <tspan x="5.781" y="37.738">?</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

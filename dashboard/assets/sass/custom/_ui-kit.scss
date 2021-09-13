@@ -1,0 +1,147 @@
+body {
+  .numericite {
+    &-toolbar-title {
+      color: white;
+    }
+  }
+
+  .md-avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border: 3px solid $main-color;
+
+    &.navbar-avatar {
+      position: absolute;
+      left: -2.2em;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  .z-10 {
+    z-index: 10;
+  }
+
+  .relative {
+    position: relative;
+  }
+
+  .custom-error {
+    color: #dd2c00;
+    caret-color: #dd2c00;
+    font-size: 12px;
+  }
+
+  .table-logo {
+    max-height: 4em;
+    margin: 1em 0;
+  }
+
+  .fake-label {
+    font-size: 16px;
+    color: #747474;
+  }
+
+  .img-preview {
+    width: 80%;
+  }
+
+  /* turn off min-width for all buttons */
+  .v-btn {
+    min-width: 0;
+  }
+
+  .btn-back {
+    margin-bottom: 1em;
+  }
+
+  .quill-container {
+    height: 100%;
+
+    .quill-editor {
+      min-height: 300px;
+    }
+  }
+
+  .fa-highlight {
+    &.fa-check {
+      color: $numericite-success-color;
+    }
+
+    &.fa-times {
+      color: $numericite-error-color;
+    }
+  }
+
+  .theme--light.application {
+    background-color: #f4f3ef;
+  }
+
+  .v-toolbar.theme--light.black {
+    .v-input__append-inner:hover:before {
+      border-color: white;
+    }
+
+    .v-input {
+      padding-top: 3px;
+    }
+
+    i, label, input {
+      color: white !important;
+    }
+  }
+
+  .application.no-style {
+    background-color: #f4f3ef;
+  }
+
+  .mb-0 {
+    margin-bottom: 0 !important;
+  }
+
+  .dropdown-sidelink {
+    overflow: hidden;
+    transform: scaleY(1);
+    transform-origin: top;
+    transition: transform 0.26s ease-in-out;
+    margin-bottom: 10px;
+    list-style: none;
+
+    &.h-0 {
+      max-height: 0;
+      transform: scaleY(0);
+    }
+
+  }
+
+  .v-toolbar {
+    .v-select__selection--comma {
+      color: white;
+    }
+  }
+
+  // For drag and num
+
+  .dragButton {
+    .v-btn {
+      margin-left: 0;
+      padding: 0;
+    }
+  
+    .v-btn:hover:before, .v-btn:focus:before {
+      background-color: transparent !important;
+    }
+  }
+  
+  .ghost {
+    opacity: 0.4;
+    background: #d79d84;
+    border-radius: 5px;
+  }
+
+}

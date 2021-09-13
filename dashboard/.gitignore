@@ -1,0 +1,23 @@
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
+
+# Nuxt build
+.nuxt
+
+# Nuxt generate
+dist
+
+# lock package.json
+package-lock.json
+
+# Static env file
+static/api-config.json
+
+#WebStorm generate
+.idea
+
+# dotenv environment variables file
+.env*

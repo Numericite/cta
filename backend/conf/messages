@@ -1,0 +1,25 @@
+web.mail.welcome.subject=Bienvenue sur la plateforme Crée Ton Avenir
+web.mail.welcome.hello=Bienvenue {0},
+web.mail.welcome.prelink=Connectez-vous dès maintenant sur la plateforme grâce à vos identifiants.
+web.mail.welcome.postlink= Nous vous souhaitons agreable journée.
+
+web.mail.activated.subject=Bienvenue sur la plateforme Crée Ton Avenir
+web.mail.activated.hello=Bonjour {0} {1},
+web.mail.activated.prelink=Votre demande d''inscription sur la plateforme Crée Ton Avenir a été acceptée par un administrateur.
+
+web.mail.forgotpwd.subject=Réinitialiser votre mot de passe
+web.mail.forgotpwd.prelink=Vous avez fait une demande de réinitialisation de mot de passe. Si vous êtes bien à l''origine de cette requête veuillez suivre ce lien:
+web.mail.forgotpwd.postlink=Veuillez ignorer ce mail si vous n''êtes pas concerné.
+
+web.mail.joker.subject={0} vous sollicite!
+web.mail.joker.hello=Bonjour {0},
+web.mail.joker.content={0} vous sollicite pour définir ses traits de personnalités dans le cadre du programme Créé ton Avenir. Vos réponses aideront {0} à consolider son auto-portrait.
+web.mail.joker.route=/joker/{0}/{1}
+
+web.mail.postlink=Nous vous souhaitons une agréable journée.
+
+web.mail.sign=L''équipe Crée Ton Avenir.
+web.mail.siteUrl=http://parcours-orientation.cree-ton-avenir.fr
+web.mail.dashboardUrl=http://parcours-orientation.cree-ton-avenir.fr/ctadashboard
+web.mail.downloadUrl=http://parcours-orientation.cree-ton-avenir.fr/api/download
+web.mail.validate.account.link=/inscription/validate/

@@ -1,0 +1,12 @@
+@(firstName: String, lastName:String)(implicit messages: Messages)
+<html>
+<head><meta charset="utf-8"></head>
+<body>
+<p>@Messages("web.mail.activated.hello", firstName, lastName)</p>
+<p>@Messages("web.mail.activated.prelink.thanks")</p>
+<p>@Messages("web.mail.activated.prelink")</p>
+<a href="@Messages("web.mail.siteUrl")">Cliquez ici pour accéder à la plateforme</a>
+<p>@Messages("web.mail.postlink")</p>
+<p>@Messages("web.mail.sign")</p>
+</body>
+</html>

@@ -1,0 +1,16 @@
+@(name: String, link: String, siteUrl: String)(implicit messages: Messages)
+<html>
+<head><meta charset="utf-8"></head>
+<body>
+<p>@Messages("web.mail.greetings", name)</p>
+<p>@{Messages("web.mail.validation.prelink", siteUrl)}</p>
+<a href="@Messages("web.mail.siteUrl")@link">@Messages("web.mail.validation.link")</a>
+<p>@Messages("web.mail.ignore.postlink")</p>
+<p>@Messages("web.mail.sign")
+    <br>
+    @if(Messages("web.mail.address") != "web.mail.address"){
+        <span>@Messages("web.mail.address")</span>
+    }
+</p>
+</body>
+</html>

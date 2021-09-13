@@ -1,0 +1,37 @@
+ul {
+  list-style: none;
+}
+
+a,
+.link-hover {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+
+  &:hover {
+    @apply text-orange;
+  }
+}
+
+p {
+  @apply text-grey text-base;
+
+  @screen sm {
+    font-size: 1.1rem;
+  }
+
+  strong {
+    @apply font-bold;
+  }
+}
+
+.hr {
+  height: 2px;
+  @apply bg-blue-lightest;
+}
+
+.postCard__ext {
+  @screen xl {
+    height: 5.267rem;
+  }
+}

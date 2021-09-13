@@ -1,0 +1,26 @@
+{
+  "Landing": {
+    "title": "Crée ton avenir - Landing",
+    "meta": [{
+      "hid": "Accueil",
+      "name": "Accueil",
+      "content": "Crée ton avenir - Plateforme d'orientation post-bac. Découvrez vos points forts, parcourez nos fiches métiers et trouvez votre orientation grâce à l'association crée ton avenir !!!"
+    }]
+  },
+  "Dashboard": {
+    "title": "Dashboard - Crée ton avenir",
+    "meta": [{
+      "hid": "dashboard",
+      "name": "description",
+      "content": "Dashboard crée ton avenir : complétez votre auto portrait en réalisant les activités pour accéder à la phase d'exploration"
+    }]
+  },
+  "Aide": {
+    "title": "Dashboard - Aide",
+    "meta": [{
+      "hid": "aide",
+      "name": "description",
+      "content": "Dashboard crée ton avenir : complétez votre auto portrait en réalisant les activités pour accéder à la phase d'exploration"
+    }]
+  }
+}

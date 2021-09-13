@@ -1,0 +1,30 @@
+@import './custom/dot.scss';
+@import './custom/button.scss';
+@import './custom/hovers.scss';
+@import './custom/flexContainer.scss';
+@import './custom/card.scss';
+@import './custom/title.scss';
+@import './custom/form.scss';
+@import './custom/textContent.scss';
+@import './custom/onView.scss';
+@import './custom/scrollMobile.scss';
+@import './custom/calendar.scss';
+
+.wO {
+  width: 0;
+}
+
+body {
+  -webkit-print-color-adjust: exact;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+.z-index-modal {
+  z-index: 9000;
+}

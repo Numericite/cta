@@ -1,0 +1,15 @@
+logs
+!target/
+target/*
+target/universal/stage/
+target/universal/tmp/
+!target/universal/
+/.idea
+/.idea_modules
+/.classpath
+/.project
+/.settings
+/RUNNING_PID
+modules/mercure/target
+project/project
+project/target
