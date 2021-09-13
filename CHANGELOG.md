@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/Numericite/cta/compare/v1.0.2...v1.0.3) (2021-09-13)
+
+
+### Bug Fixes
+
+* clean up package.json ([231c524](https://github.com/Numericite/cta/commit/231c524abfc9d69ac7164bf187b46ee77f9350eb))
+
 ## [1.0.2](https://github.com/Numericite/cta/compare/v1.0.1...v1.0.2) (2021-09-13)
 
 
