@@ -8,8 +8,5 @@
     "url": "git+https://github.com/Numericite/cta.git"
   },
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Numericite/cta/issues"
-  }
+  "license": "ISC"
 }
