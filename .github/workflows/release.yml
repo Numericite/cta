@@ -17,6 +17,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
 
       - name: Action For Semantic Release
         uses: cycjimmy/semantic-release-action@v2.5.4
