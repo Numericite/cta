@@ -26,4 +26,4 @@ jobs:
             @semantic-release/changelog@5.0.1
             @semantic-release/git@9.0.0
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.NUMERICITEBOT_ACCESS_TOKEN }}
