@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/Numericite/cta/compare/v1.1.4...v1.1.5) (2021-09-23)
+
+
+### Bug Fixes
+
+* change workflow build ([fe3bc4e](https://github.com/Numericite/cta/commit/fe3bc4e5174529bf9cf4c134491d7293b58e375b))
+
 ## [1.1.4](https://github.com/Numericite/cta/compare/v1.1.3...v1.1.4) (2021-09-23)
 
 
