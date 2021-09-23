@@ -175,4 +175,4 @@ jobs:
       
       - name: Deploy application
         shell: bash
-        run: kapp --dangerous-override-ownership-of-existing-resources -y deploy -a cta -f manifests-test.yml
+        run: kapp --dangerous-override-ownership-of-existing-resources -y deploy -f manifests-test.yml
