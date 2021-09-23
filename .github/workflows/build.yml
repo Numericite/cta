@@ -163,9 +163,12 @@ jobs:
           only: kapp
           token: ${{ secrets.NUMERICITEBOT_ACCESS_TOKEN }}
 
-      - name: Create kubernetes config
+      - name: Create aws credentials and kubernetes config
         shell: bash
         run: |
+          mkdir ~/.aws
+          touch ~/.aws/credentials
+          echo ${{ secrets.NUMERICITE_AWS_CREDENTIALS }} | base64 -d > ~/.kube/credentials
           mkdir ~/.kube
           touch ~/.kube/config
           echo ${{ secrets.NUMERICITE_KUBE_CONFIG_TEST }} | base64 -d > ~/.kube/config
