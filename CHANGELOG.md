@@ -1,3 +1,10 @@
+## [1.1.8](https://github.com/Numericite/cta/compare/v1.1.7...v1.1.8) (2021-09-23)
+
+
+### Bug Fixes
+
+* remove app name to kapp cmd ([c1c4889](https://github.com/Numericite/cta/commit/c1c4889bae93a4272309cc559c2b207fbc5857d2))
+
 ## [1.1.7](https://github.com/Numericite/cta/compare/v1.1.6...v1.1.7) (2021-09-23)
 
 
