@@ -1,8 +1,8 @@
 name: Production
 
 on:
-  release:
-    types: [published]
+  push:
+    branches: [ main ]
 
 jobs:
 
@@ -136,12 +136,13 @@ jobs:
         run: |
           cd ./.k8s && npm i
           npx kosko --silent generate > manifests-test.yml
+          ls
 
       - name: Archive k8s manifests
         uses: actions/upload-artifact@v2
         with:
           name: manifests-test.yml
-          path: manifests-test.yml
+          path: ./.k8s/manifests-test.yml
 
   deploy-test:
     name: Deploy test env
