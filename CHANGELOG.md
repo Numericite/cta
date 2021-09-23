@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/Numericite/cta/compare/v1.1.0...v1.1.1) (2021-09-23)
+
+
+### Bug Fixes
+
+* install all npm dependencies for kosko folder ([a3d4537](https://github.com/Numericite/cta/commit/a3d453778bf66fc4ddc57477b24f89bad9aff670))
+
 # [1.1.0](https://github.com/Numericite/cta/compare/v1.0.4...v1.1.0) (2021-09-23)
 
 
