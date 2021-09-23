@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/Numericite/cta/compare/v1.1.3...v1.1.4) (2021-09-23)
+
+
+### Bug Fixes
+
+* path for manifests uploads ([093f702](https://github.com/Numericite/cta/commit/093f702f760082dad151e0de993b077f4a9c12bc))
+
 ## [1.1.3](https://github.com/Numericite/cta/compare/v1.1.2...v1.1.3) (2021-09-23)
 
 
