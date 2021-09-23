@@ -1,3 +1,11 @@
+## [1.1.7](https://github.com/Numericite/cta/compare/v1.1.6...v1.1.7) (2021-09-23)
+
+
+### Bug Fixes
+
+* add aws credentials to github secrets ([c029e74](https://github.com/Numericite/cta/commit/c029e7432f0754585ce401d2d30693074146114f))
+* path for decode of aws credetnials ([55927c8](https://github.com/Numericite/cta/commit/55927c820006bf3ed6cbb9e1f088df3535a222d6))
+
 ## [1.1.6](https://github.com/Numericite/cta/compare/v1.1.5...v1.1.6) (2021-09-23)
 
 
