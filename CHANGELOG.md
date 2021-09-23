@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/Numericite/cta/compare/v1.1.2...v1.1.3) (2021-09-23)
+
+
+### Bug Fixes
+
+* change workflow cmd for kosko ([64454ff](https://github.com/Numericite/cta/commit/64454ffbb3a88c0fdecb1864f0c70dc9ce3b7b47))
+
 ## [1.1.2](https://github.com/Numericite/cta/compare/v1.1.1...v1.1.2) (2021-09-23)
 
 
