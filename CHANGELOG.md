@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Numericite/cta/compare/v1.0.4...v1.1.0) (2021-09-23)
+
+
+### Features
+
+* add new job to create manifest and deploy to aws cluster ([c5d4575](https://github.com/Numericite/cta/commit/c5d4575d1d18cebb7268d01f8f80699942513543))
+
 ## [1.0.4](https://github.com/Numericite/cta/compare/v1.0.3...v1.0.4) (2021-09-13)
 
 
