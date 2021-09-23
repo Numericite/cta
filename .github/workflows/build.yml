@@ -138,7 +138,7 @@ jobs:
 
       - name: Install kosko and generate create_manifests
         run: |
-          cd ./.k8s && npm i kosko
+          cd ./.k8s && npm i
           kosko --silent generate > manifests-test.yml
 
       - name: Archive k8s manifests
