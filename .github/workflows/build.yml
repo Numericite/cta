@@ -168,7 +168,7 @@ jobs:
         run: |
           mkdir ~/.aws
           touch ~/.aws/credentials
-          echo ${{ secrets.NUMERICITE_AWS_CREDENTIALS }} | base64 -d > ~/.kube/credentials
+          echo ${{ secrets.NUMERICITE_AWS_CREDENTIALS }} | base64 -d > ~/.aws/credentials
           mkdir ~/.kube
           touch ~/.kube/config
           echo ${{ secrets.NUMERICITE_KUBE_CONFIG_TEST }} | base64 -d > ~/.kube/config
