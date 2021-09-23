@@ -123,3 +123,56 @@ jobs:
           labels: "${{ steps.docker_meta.outputs.labels }}"
           no-cache: true
           build-args: DOCKER_BUILDKIT=0
+
+
+  create-manifests:
+    runs-on: ubuntu-latest
+    needs: [
+      register-backend,
+      register-dashboard,
+      register-frontend,
+    ]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install kosko and generate create_manifests
+        run: |
+          cd ./.k8s && npm i kosko
+          kosko --silent generate > manifests-test.yml
+
+      - name: Archive k8s manifests
+        uses: actions/upload-artifact@v2
+        with:
+          name: manifests-test.yml
+          path: manifests-test.yml
+
+  deploy-test:
+    name: Deploy test env
+    runs-on: ubuntu-latest
+    needs: [create-manifests]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Download k8s manifests
+        uses: actions/download-artifact@v2
+        with:
+          name: manifests-test.yml
+
+      - name: Install Kapp
+        uses: vmware-tanzu/carvel-setup-action@v1
+        with:
+          only: kapp
+          token: ${{ secrets.NUMERICITEBOT_ACCESS_TOKEN }}
+
+      - name: Create kubernetes config
+        shell: bash
+        run: |
+          mkdir ~/.kube
+          touch ~/.kube/config
+          echo ${{ secrets.NUMERICITE_KUBE_CONFIG_TEST }} | base64 -d > ~/.kube/config
+      
+      - name: Deploy application
+        shell: bash
+        run: kapp --dangerous-override-ownership-of-existing-resources -y deploy -a cta -f manifests-test.yml
