@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/Numericite/cta/compare/v1.1.8...v1.2.0) (2021-09-24)
+
+
+### Features
+
+* add ingress service for redirect and change env test variables ([dfb2941](https://github.com/Numericite/cta/commit/dfb2941e201cc4884aea3a6a58660f62d0a02ce7))
+
 ## [1.1.8](https://github.com/Numericite/cta/compare/v1.1.7...v1.1.8) (2021-09-23)
 
 
