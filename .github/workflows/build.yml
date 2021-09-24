@@ -128,6 +128,11 @@ jobs:
   create-manifests:
     name: 'Create manifests for test env'
     runs-on: ubuntu-latest
+    needs: [
+      register-backend,
+      register-frontend,
+      register-dashboard
+    ]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2

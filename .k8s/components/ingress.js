@@ -10,7 +10,7 @@ const ingress = new Ingress({
     }
   },
   spec: {
-    rules: {
+    rules: [{
       host: 'cta-recette.numericite.eu',
       http: {
         paths: [
@@ -19,7 +19,7 @@ const ingress = new Ingress({
           { path: '/api', backend: { serviceName: 'dashboard', servicePort: 7005 } },
         ]
       }
-    }
+    }]
   }
 })
 
