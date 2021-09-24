@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/Numericite/cta/compare/v1.2.1...v1.2.2) (2021-09-24)
+
+
+### Bug Fixes
+
+* add app name for kapp deploy ([fd8842a](https://github.com/Numericite/cta/commit/fd8842a30fe552fa18d040907aec6d5a96863bbc))
+
 ## [1.2.1](https://github.com/Numericite/cta/compare/v1.2.0...v1.2.1) (2021-09-24)
 
 
