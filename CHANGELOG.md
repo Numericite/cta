@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/Numericite/cta/compare/v1.2.2...v1.2.3) (2021-09-24)
+
+
+### Bug Fixes
+
+* add worfklow_dispatch arg to build workflow ([1f2acc2](https://github.com/Numericite/cta/commit/1f2acc2b547564889929e6c50ae7b7c061682518))
+
 ## [1.2.2](https://github.com/Numericite/cta/compare/v1.2.1...v1.2.2) (2021-09-24)
 
 
