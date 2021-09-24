@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/Numericite/cta/compare/v1.2.0...v1.2.1) (2021-09-24)
+
+
+### Bug Fixes
+
+* manifests need params and type in kosko ingress service ([3e019d2](https://github.com/Numericite/cta/commit/3e019d2b724a6abf1512be495aaabd8f767d0382))
+
 # [1.2.0](https://github.com/Numericite/cta/compare/v1.1.8...v1.2.0) (2021-09-24)
 
 
