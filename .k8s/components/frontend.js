@@ -34,8 +34,7 @@ const service_frontend = new Service({
   metadata,
   spec: {
     selector: labels,
-    type: "LoadBalancer",
-    ports: [{ port: 3000, targetPort: 3000, nodePort: 30000 }]
+    ports: [{ port: 3000, targetPort: 3000 }]
   }
 });
 

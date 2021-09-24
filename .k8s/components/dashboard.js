@@ -34,8 +34,7 @@ const service_dashboard = new Service({
   metadata,
   spec: {
     selector: labels,
-    type: "LoadBalancer",
-    ports: [{ port: 3001, targetPort: 3001, nodePort: 30001 }]
+    ports: [{ port: 3001, targetPort: 3001 }]
   }
 });
 

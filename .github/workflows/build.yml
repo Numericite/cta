@@ -6,123 +6,123 @@ on:
 
 jobs:
 
-  # register-frontend:
-  #     name: Register frontend
-  #     runs-on: ubuntu-latest
-  #     steps:
-  #       - name: Checkout repository
-  #         uses: actions/checkout@v2
+  register-frontend:
+      name: Register frontend
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v2
 
-  #       - name: Create image labels and tags
-  #         id: docker_meta
-  #         uses: "crazy-max/ghaction-docker-meta@2e1a5c7fa42123697f82d479b551a1bbdb1bef88"
-  #         with:
-  #           images: ghcr.io/Numericite/cta/frontend
-  #           labels: |
-  #             org.opencontainers.image.title=frontend-cta
-  #             org.opencontainers.image.documentation=https://github.com/Numericite/cta
-  #           tags: |
-  #             type=sha
-  #             type=ref,event=pr
-  #             type=ref,event=branch
-  #             type=semver,pattern={{version}}
-  #             type=semver,pattern={{major}}.{{minor}}
+        - name: Create image labels and tags
+          id: docker_meta
+          uses: "crazy-max/ghaction-docker-meta@2e1a5c7fa42123697f82d479b551a1bbdb1bef88"
+          with:
+            images: ghcr.io/Numericite/cta/frontend
+            labels: |
+              org.opencontainers.image.title=frontend-cta
+              org.opencontainers.image.documentation=https://github.com/Numericite/cta
+            tags: |
+              type=sha
+              type=ref,event=pr
+              type=ref,event=branch
+              type=semver,pattern={{version}}
+              type=semver,pattern={{major}}.{{minor}}
 
-  #       - name: Registry authentication
-  #         uses: docker/login-action@v1
-  #         with:
-  #           registry: ghcr.io
-  #           username: NumericiteBot
-  #           password: ${{ secrets.NUMERICITEBOT_ACCESS_TOKEN }}
+        - name: Registry authentication
+          uses: docker/login-action@v1
+          with:
+            registry: ghcr.io
+            username: NumericiteBot
+            password: ${{ secrets.NUMERICITEBOT_ACCESS_TOKEN }}
 
-  #       - name: Image build and register
-  #         uses: docker/build-push-action@v2
-  #         with:
-  #           context: ./frontend
-  #           push: "true"
-  #           tags: "${{ steps.docker_meta.outputs.tags }}"
-  #           labels: "${{ steps.docker_meta.outputs.labels }}"
-  #           build-args: |
-  #             buildenv=test
+        - name: Image build and register
+          uses: docker/build-push-action@v2
+          with:
+            context: ./frontend
+            push: "true"
+            tags: "${{ steps.docker_meta.outputs.tags }}"
+            labels: "${{ steps.docker_meta.outputs.labels }}"
+            build-args: |
+              buildenv=test
 
 
-  # register-dashboard:
-  #   name: Register dashboard
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v2
+  register-dashboard:
+    name: Register dashboard
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-  #     - name: Create image labels and tags
-  #       id: docker_meta
-  #       uses: "crazy-max/ghaction-docker-meta@2e1a5c7fa42123697f82d479b551a1bbdb1bef88"
-  #       with:
-  #         images: ghcr.io/Numericite/cta/dashboard
-  #         labels: |
-  #           org.opencontainers.image.title=dashboard-cta
-  #           org.opencontainers.image.documentation=https://github.com/Numericite/cta
-  #         tags: |
-  #           type=sha
-  #           type=ref,event=pr
-  #           type=ref,event=branch
-  #           type=semver,pattern={{version}}
-  #           type=semver,pattern={{major}}.{{minor}}
+      - name: Create image labels and tags
+        id: docker_meta
+        uses: "crazy-max/ghaction-docker-meta@2e1a5c7fa42123697f82d479b551a1bbdb1bef88"
+        with:
+          images: ghcr.io/Numericite/cta/dashboard
+          labels: |
+            org.opencontainers.image.title=dashboard-cta
+            org.opencontainers.image.documentation=https://github.com/Numericite/cta
+          tags: |
+            type=sha
+            type=ref,event=pr
+            type=ref,event=branch
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
 
-  #     - name: Registry authentication
-  #       uses: docker/login-action@v1
-  #       with:
-  #         registry: ghcr.io
-  #         username: NumericiteBot
-  #         password: ${{ secrets.NUMERICITEBOT_ACCESS_TOKEN }}
+      - name: Registry authentication
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: NumericiteBot
+          password: ${{ secrets.NUMERICITEBOT_ACCESS_TOKEN }}
 
-  #     - name: Image build and register
-  #       uses: docker/build-push-action@v2
-  #       with:
-  #         context: ./dashboard
-  #         push: "true"
-  #         tags: "${{ steps.docker_meta.outputs.tags }}"
-  #         labels: "${{ steps.docker_meta.outputs.labels }}"
-  #         build-args: |
-  #           buildenv=test
+      - name: Image build and register
+        uses: docker/build-push-action@v2
+        with:
+          context: ./dashboard
+          push: "true"
+          tags: "${{ steps.docker_meta.outputs.tags }}"
+          labels: "${{ steps.docker_meta.outputs.labels }}"
+          build-args: |
+            buildenv=test
     
-  # register-backend:
-  #   name: Register backend
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v2
+  register-backend:
+    name: Register backend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-  #     - name: Create image labels and tags
-  #       id: docker_meta
-  #       uses: "crazy-max/ghaction-docker-meta@2e1a5c7fa42123697f82d479b551a1bbdb1bef88"
-  #       with:
-  #         images: ghcr.io/Numericite/cta/backend
-  #         labels: |
-  #           org.opencontainers.image.title=backend-cta
-  #           org.opencontainers.image.documentation=https://github.com/Numericite/cta
-  #         tags: |
-  #           type=sha
-  #           type=ref,event=pr
-  #           type=ref,event=branch
-  #           type=semver,pattern={{version}}
-  #           type=semver,pattern={{major}}.{{minor}}
+      - name: Create image labels and tags
+        id: docker_meta
+        uses: "crazy-max/ghaction-docker-meta@2e1a5c7fa42123697f82d479b551a1bbdb1bef88"
+        with:
+          images: ghcr.io/Numericite/cta/backend
+          labels: |
+            org.opencontainers.image.title=backend-cta
+            org.opencontainers.image.documentation=https://github.com/Numericite/cta
+          tags: |
+            type=sha
+            type=ref,event=pr
+            type=ref,event=branch
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
 
-  #     - name: Registry authentication
-  #       uses: docker/login-action@v1
-  #       with:
-  #         registry: ghcr.io
-  #         username: NumericiteBot
-  #         password: ${{ secrets.NUMERICITEBOT_ACCESS_TOKEN }}
+      - name: Registry authentication
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: NumericiteBot
+          password: ${{ secrets.NUMERICITEBOT_ACCESS_TOKEN }}
 
-  #     - name: Image build and register
-  #       uses: docker/build-push-action@v2.7.0
-  #       with:
-  #         context: ./backend
-  #         push: true
-  #         tags: "${{ steps.docker_meta.outputs.tags }}"
-  #         labels: "${{ steps.docker_meta.outputs.labels }}"
-  #         no-cache: true
-  #         build-args: DOCKER_BUILDKIT=0
+      - name: Image build and register
+        uses: docker/build-push-action@v2.7.0
+        with:
+          context: ./backend
+          push: true
+          tags: "${{ steps.docker_meta.outputs.tags }}"
+          labels: "${{ steps.docker_meta.outputs.labels }}"
+          no-cache: true
+          build-args: DOCKER_BUILDKIT=0
 
 
   create-manifests:
@@ -136,7 +136,6 @@ jobs:
         run: |
           cd ./.k8s && npm i
           npx kosko --silent generate > manifests-test.yml
-          ls
 
       - name: Archive k8s manifests
         uses: actions/upload-artifact@v2

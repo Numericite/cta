@@ -34,8 +34,7 @@ const service_backend = new Service({
   metadata,
   spec: {
     selector: labels,
-    type: "LoadBalancer",
-    ports: [{ port: 7005, targetPort: 7005, nodePort: 30007 }]
+    ports: [{ port: 7005, targetPort: 7005 }]
   }
 });
 
